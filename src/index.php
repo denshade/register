@@ -8,7 +8,7 @@
 <body>
 <div class="container-fluid">
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <a class="navbar-brand" href="#">Fixed navbar</a>
+        <a class="navbar-brand" href="#">Register</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -35,20 +35,20 @@
             </div>
     <?php
 require_once "../settings.php";
+    require_once "ConceptDao.php";
+
 
 try {
     $pdo = getConnection();
 } catch (PDOException $exception)
 {
+    http_redirect("login.php");
     //redirect to login.php
 }
-
-$pdoStatement = $pdo->prepare('SELECT table_name FROM information_schema.tables where table_schema=\'register\'');
-$pdoStatement->execute();
-$tables = $pdoStatement->fetchAll();
-foreach($tables as $key => $table)
+$conceptDao = new ConceptDao($pdo);
+foreach($conceptDao->getConcepts() as $concept)
 {
-    echo "$table[table_name]";
+    echo "<a href=\"view_concept_list.php?concept=$concept\">$concept</a>";
 }
 
 //SELECT table_name FROM information_schema.tables where table_schema='your_database_name';
