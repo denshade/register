@@ -76,4 +76,11 @@ class ConceptDao
         $data = $pdoStatement->fetchAll();
         return $data;
     }
+
+    public function addTableColumn($tablename, $columnName, $type)
+    {
+        $pdoStatement = $this->pdo->prepare("ALTER TABLE $tablename ADD COLUMN $columnName $type");
+        $pdoStatement->execute();
+
+    }
 }
