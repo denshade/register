@@ -1,10 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: lieven
- * Date: 21/09/2018
- * Time: 21:20
- */
+
+require_once "Attribute.php";
 
 class ConceptDao
 {
@@ -38,10 +34,10 @@ class ConceptDao
      * @param string $concept
      * @return string[]
      */
-    public function getAttributes($concept)
+    public function getAttributesNames($concept)
     {
         $columns = [];
-        $pdoStatement = $this->pdo->prepare('SELECT COLUMN_NAME FROM information_schema. columns WHERE table_schema=\'register\' AND table_name=\''.$concept.'\'' );
+        $pdoStatement = $this->pdo->prepare('SELECT COLUMN_NAME FROM information_schema.columns WHERE table_schema=\'register\' AND table_name=\''.$concept.'\'' );
         $pdoStatement->execute();
         $tables = $pdoStatement->fetchAll();
         foreach($tables as $key => $table)
@@ -49,6 +45,27 @@ class ConceptDao
             $columns[]= $table["COLUMN_NAME"];
         }
         return $columns;
+
+    }
+
+    /**
+     * @param string $concept
+     * @return Attribute[]
+     */
+    public function getAttributes($concept)
+    {
+        $attributes = [];
+        $pdoStatement = $this->pdo->prepare('SELECT * FROM information_schema.columns WHERE table_schema=\'register\' AND table_name=\''.$concept.'\'' );
+        $pdoStatement->execute();
+        $tables = $pdoStatement->fetchAll();
+        foreach($tables as $key => $table)
+        {
+            $attribute = new Attribute();
+            $attribute->name = $table["COLUMN_NAME"];
+            $attribute->type = $table["COLUMN_TYPE"];
+            $attributes[]= $attribute;
+        }
+        return $attributes;
 
     }
 
