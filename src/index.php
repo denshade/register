@@ -7,7 +7,8 @@ try {
     $pdo = getConnection();
 } catch (PDOException $exception)
 {
-    http_redirect("login.php");
+    header("Location: login.php");
+    return;
     //redirect to login.php
 }
 
@@ -28,14 +29,14 @@ try {
             </div>
     <table class="table">
         <thead>
-        <th>Name</th><th></th><th></th>
+        <th>Name</th><th></th><th></th><th></th>
         </thead>
         <tbody>
 <?php
         $conceptDao = new ConceptDao($pdo);
 foreach($conceptDao->getConcepts() as $concept)
 {
-    echo "<tr><td>$concept</td><td><a href='view_concept_list.php?concept=$concept'>View data</a></td><td><a href='addcolumn.php?concept=$concept'>Add columns</a></td></tr>";
+    echo "<tr><td>$concept</td><td><a href='view_concept_list.php?concept=$concept'>View data</a></td><td><a href='dataentryform.php?concept=$concept'>Add data</a></td><td><a href='addcolumn.php?concept=$concept'>Add columns</a></td></tr>";
 }
 
 //SELECT table_name FROM information_schema.tables where table_schema='your_database_name';

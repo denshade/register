@@ -7,6 +7,7 @@ try {
 } catch (PDOException $exception)
 {
     header("Location: login.php");
+    return;
     //redirect to login.php
 }
 $conceptDao = new ConceptDao($pdo);
