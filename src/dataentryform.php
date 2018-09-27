@@ -32,7 +32,7 @@ try {
 
                     <?php
                     echo '<input type="hidden" name="concept" value="'.$concept.'"/>';
-                    foreach ($conceptDao->getAttributes($concept) as $attribute) {
+                    foreach (array_slice($conceptDao->getAttributes($concept), 1) as $attribute) {
                         echo "<div class=\"row\"> <div class=\"col-2\">";
 
                         echo "<label>$attribute->name</label></div><div class=\"col\">";
@@ -50,6 +50,11 @@ try {
                                 echo '<option value="' . $option . '">' . $option . '</option>';
                             }
                             echo '</select>';
+                        } else if (strpos($attribute->type, "varchar") !== FALSE)
+                        {
+                            echo '<input type="text" name="' . $attribute->name . '">';
+                        } else {
+                            var_dump($attribute->type);
                         }
                         echo "</div></div>";
                     }
