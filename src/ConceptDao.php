@@ -83,4 +83,34 @@ class ConceptDao
         $pdoStatement->execute();
 
     }
+
+    public function addDataForConcept($concept, $map)
+    {
+        $attributes = $this->getAttributes($concept);
+        $values = [];
+        $attributeNames = [];
+
+        foreach($attributes as $attribute)
+        {
+            $value = @$map[$attribute->name];
+            $attributeNames []= $attribute->name;
+            if (strpos($attribute->type, "tinyint") !== FALSE)
+            {
+                if ($value === "on") {
+                    $value = 1;
+                } else{
+                    $value = 0;
+                }
+
+            } else if (strpos($attribute->type, "int") !== FALSE) {
+                $value = (int)$value;
+            } else if (strpos($attribute->type, "enum(") !== FALSE) {
+                $value = "'$value'";
+            }
+            $values []= $value;
+        }
+        var_dump("INSERT INTO $concept (".implode(",", $attributeNames).") VALUES(".implode(",", $values).")");
+        $success = $this->pdo->exec("INSERT INTO $concept (".implode(",", $attributeNames).") VALUES(".implode(",", $values).")");
+        var_dump($success);
+    }
 }

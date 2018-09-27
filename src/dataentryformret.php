@@ -9,5 +9,6 @@ $concept = $_GET["concept"];
 
 
 $conceptDao = new ConceptDao($pdo);
+$conceptDao->addDataForConcept($concept, $_GET);
 //$conceptDao->addTableColumn($concept, $columnname, $columntype);
-header("Location: view_concept_list.php?concept=$concept");
+//header("Location: view_concept_list.php?concept=$concept");

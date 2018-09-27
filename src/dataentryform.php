@@ -38,13 +38,13 @@ try {
                         echo "<label>$attribute->name</label></div><div class=\"col\">";
                         if (strpos($attribute->type, "tinyint") !== FALSE)
                         {
-                            echo '<input type="checkbox" name=" . $attribute->name . ">';
+                            echo '<input type="checkbox" name="' . $attribute->name.'">';
                         } else if (strpos($attribute->type, "int") !== FALSE) {
-                            echo '<input type="number" name=" . $attribute->name . ">';
+                            echo '<input type="number" name="' . $attribute->name . '">';
                         } else if (strpos($attribute->type, "enum(") !== FALSE) {
                             $optionsFirst = substr($attribute->type, strlen("enum("));
                             $optionsFirst = substr($optionsFirst, 0, strlen($optionsFirst) - 1);
-                            echo '<select>';
+                            echo '<select name="'.$attribute->name .'">';
                             foreach (explode(",", $optionsFirst) as $option) {
                                 $option = substr($option, 1, strlen($option) - 2);
                                 echo '<option value="' . $option . '">' . $option . '</option>';
