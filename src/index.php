@@ -34,18 +34,17 @@ try {
         <tbody>
 <?php
         $conceptDao = new ConceptDao($pdo);
-foreach($conceptDao->getConcepts() as $concept)
-{
-    echo "<tr><td>$concept</td><td><a href='view_concept_list.php?concept=$concept'>View data</a></td><td><a href='dataentryform.php?concept=$concept'>Add data</a></td><td><a href='addcolumn.php?concept=$concept'>Add columns</a></td></tr>";
-}
+        foreach($conceptDao->getConcepts() as $concept)
+        {
+            echo "<tr><td>$concept</td><td><a href='view_concept_list.php?concept=$concept'>View data</a></td><td><a href='dataentryform.php?concept=$concept'>Add data</a></td><td><a href='addcolumn.php?concept=$concept'>Add columns</a></td></tr>";
+        }
 
-//SELECT table_name FROM information_schema.tables where table_schema='your_database_name';
-
-//if no login => redirect to login.
-//Show the available concepts.
     ?>
+
         </tbody>
     </table>
-    </div>
+    <button class="btn btn-primary" onclick='window.location.href="addconcept.php";'>Add concept</button>
+
+</div>
     </body>
     </html>

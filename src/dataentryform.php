@@ -42,11 +42,8 @@ try {
                         } else if ($attribute->isInt()) {
                             echo '<input type="number" name="' . $attribute->name . '">';
                         } else if ($attribute->isEnum()) {
-                            $optionsFirst = substr($attribute->type, strlen("enum("));
-                            $optionsFirst = substr($optionsFirst, 0, strlen($optionsFirst) - 1);
                             echo '<select name="'.$attribute->name .'">';
-                            foreach (explode(",", $optionsFirst) as $option) {
-                                $option = substr($option, 1, strlen($option) - 2);
+                            foreach ($attribute->getOptions() as $option) {
                                 echo '<option value="' . $option . '">' . $option . '</option>';
                             }
                             echo '</select>';

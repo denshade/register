@@ -115,4 +115,11 @@ class ConceptDao
         var_dump($success);
         var_dump($this->pdo->errorInfo());
     }
+
+    public function createConcept($concept)
+    {
+        $pdoStatement = $this->pdo->prepare("CREATE TABLE $concept (id${concept} INT UNSIGNED AUTO_INCREMENT PRIMARY KEY)");
+        $pdoStatement->execute();
+
+    }
 }
