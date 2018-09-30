@@ -119,7 +119,21 @@ class ConceptDao
     public function createConcept($concept)
     {
         $pdoStatement = $this->pdo->prepare("CREATE TABLE $concept (id${concept} INT UNSIGNED AUTO_INCREMENT PRIMARY KEY)");
-        $pdoStatement->execute();
+        $success = $pdoStatement->execute();
+        if (!$success) {
+            var_dump($pdoStatement->errorInfo());
+        }
+        return $success;
+    }
+
+    public function dropTable($concept)
+    {
+        $pdoStatement = $this->pdo->prepare("DROP TABLE $concept");
+        $success = $pdoStatement->execute();
+        if (!$success) {
+            var_dump($pdoStatement->errorInfo());
+        }
+        return $success;
 
     }
 }

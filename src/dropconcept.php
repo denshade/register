@@ -7,9 +7,9 @@ $pdo = getConnection();
 
 $concept = $_GET["concept"];
 
-
 $conceptDao = new ConceptDao($pdo);
-$success = $conceptDao->createConcept($concept);
+$success = $conceptDao->dropTable($concept);
+
 if (success)
 {
     header("Location: index.php");
