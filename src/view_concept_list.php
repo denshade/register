@@ -28,6 +28,9 @@ $concept = $_GET["concept"];
     ?>
     <br/>
     <div class="container-fluid">
+        <h1>
+            Data for <?php echo $concept; ?>
+        </h1>
         <table class="display nowrap dataTable dtr-inline collapsed" id="concept">
             <thead>
             <tr>

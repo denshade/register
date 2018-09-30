@@ -4,8 +4,7 @@ require_once "../settings.php";
 
 try {
     $pdo = getConnection();
-} catch (PDOException $exception)
-{
+} catch (PDOException $exception) {
     http_redirect("login.php");
     //redirect to login.php
 }
@@ -27,79 +26,78 @@ $concept = $_GET["concept"];
     <br/>
 
     <div class="container-fluid">
-<form class="form-horizontal" action="addcolumnret.php">
-    <div class="form-group">
-        <label for="name" class="cols-sm-2 control-label">Name of the new column</label>
-        <div class="cols-sm-10">
-            <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                <input type="text" class="form-control" name="name" id="name" placeholder="Enter the name of column">
+        <h1>New column for <?php echo $concept; ?></h1>
+        <form class="form-horizontal" action="addcolumnret.php">
+            <div class="form-group">
+                <label for="name" class="cols-sm-2 control-label">Name of the new column</label>
+                <div class="cols-sm-10">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                        <input type="text" class="form-control" name="name" id="name"
+                               placeholder="Enter the name of column">
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
 
-    <div class="form-group">
-        <label for="name" class="cols-sm-2 control-label">Type of the new column</label>
-        <div class="cols-sm-10">
-            <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                <select class="form-control" id="type" name="type">
-                    <option value="boolean">Boolean</option>
-                    <option value="double">Decimal</option>
-                    <option value="date">Date</option>
-                    <option value="datetime">DateTime</option>
-                    <option value="int">Integer(-2147483648 to 2147483647)</option>
-                    <option value="varchar(255)">Limited Size Text(255)</option>
-                    <option value="enum">Limited list of options</option>
-                    <option value="text">Unlimited text</option>
-                </select>
+            <div class="form-group">
+                <label for="name" class="cols-sm-2 control-label">Type of the new column</label>
+                <div class="cols-sm-10">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                        <select class="form-control" id="type" name="type">
+                            <option value="boolean">Boolean</option>
+                            <option value="double">Decimal</option>
+                            <option value="date">Date</option>
+                            <option value="datetime">DateTime</option>
+                            <option value="int">Integer(-2147483648 to 2147483647)</option>
+                            <option value="varchar(255)">Limited Size Text(255)</option>
+                            <option value="enum">Limited list of options</option>
+                            <option value="text">Unlimited text</option>
+                        </select>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-    <input type="hidden" name="concept" id="concept" value="<?php echo $concept;?>">
+            <input type="hidden" name="concept" id="concept" value="<?php echo $concept; ?>">
 
-    <!--div class="form-group"> How do you make something required if there is no
-        <label for="name" class="cols-sm-2 control-label">Required</label>
-        <div class="cols-sm-10">
-            <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                <input type="checkbox" value="Required">
+            <div class="form-group">
+                <div class="cols-sm-10">
+                    <div class="input-group">
+                        <input class="btn btn-success" type="Submit" value="Add column">
+                    </div>
+                </div>
             </div>
-        </div>
-    </div-->
-
-    <div class="form-group">
-        <div class="cols-sm-10">
-            <div class="input-group">
-                <input class="btn btn-success" type="Submit" value="Add column">
-            </div>
-        </div>
-    </div>
 
 
-</form>
+        </form>
 
+        <h1>
+            Currently available columns.
+        </h1>
         <table class="display nowrap dataTable dtr-inline collapsed" id="concept">
             <thead>
             <tr>
-                <th>Name</th><th>Type</th>
+                <th>Name</th>
+                <th>Type</th>
             </tr>
             </thead>
             <tbody>
             <?php
             $attributes = $conceptDao->getAttributes($concept);
-            foreach ($attributes as $attribute)
-            {
+            foreach ($attributes as $attribute) {
                 echo "<tr><td>$attribute->name</td><td>$attribute->type</td></tr>";
             }
             ?>
 
             <?php
-// Get the username/password from the session.
-// check if you can connect using the username/pwd.
-// Check if the table exists.
-// Build the header.
-// SELECT * FROM table.
-//
-?>
+            // Get the username/password from the session.
+            // check if you can connect using the username/pwd.
+            // Check if the table exists.
+            // Build the header.
+            // SELECT * FROM table.
+            //
+            ?>
+    </div>
+
 </div>
+</body>
+</html>

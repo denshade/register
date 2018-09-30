@@ -26,6 +26,9 @@ try {
     <br/>
     <div class="container-fluid">
         <div class="card" style="width: 80%;">
+            <div class="card-header">
+                Data form for <?php echo $concept; ?>
+            </div>
             <div class="card-body">
 
                 <form action="dataentryformret.php">
