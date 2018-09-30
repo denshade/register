@@ -94,7 +94,7 @@ class ConceptDao
         {
             $value = @$map[$attribute->name];
             $attributeNames []= $attribute->name;
-            if (strpos($attribute->type, "tinyint") !== FALSE)
+            if ($attribute->isBoolean())
             {
                 if ($value === "on") {
                     $value = 1;
@@ -102,11 +102,11 @@ class ConceptDao
                     $value = 0;
                 }
 
-            } else if (strpos($attribute->type, "int") !== FALSE) {
+            } else if ($attribute->isInt()) {
                 $value = (int)$value;
-            } else if (strpos($attribute->type, "enum(") !== FALSE) {
+            } else if ($attribute->isEnum()) {
                 $value = "'$value'";
-            }else if (strpos($attribute->type, "varchar") !== FALSE) {
+            }else if ($attribute->isVarchar()) {
                 $value = "'$value'";
             }
             $values []= $value;

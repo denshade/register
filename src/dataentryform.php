@@ -36,12 +36,12 @@ try {
                         echo "<div class=\"row\"> <div class=\"col-2\">";
 
                         echo "<label>$attribute->name</label></div><div class=\"col\">";
-                        if (strpos($attribute->type, "tinyint") !== FALSE)
+                        if ($attribute->isBoolean())
                         {
                             echo '<input type="checkbox" name="' . $attribute->name.'">';
-                        } else if (strpos($attribute->type, "int") !== FALSE) {
+                        } else if ($attribute->isInt()) {
                             echo '<input type="number" name="' . $attribute->name . '">';
-                        } else if (strpos($attribute->type, "enum(") !== FALSE) {
+                        } else if ($attribute->isEnum()) {
                             $optionsFirst = substr($attribute->type, strlen("enum("));
                             $optionsFirst = substr($optionsFirst, 0, strlen($optionsFirst) - 1);
                             echo '<select name="'.$attribute->name .'">';
@@ -50,7 +50,7 @@ try {
                                 echo '<option value="' . $option . '">' . $option . '</option>';
                             }
                             echo '</select>';
-                        } else if (strpos($attribute->type, "varchar") !== FALSE)
+                        } else if ($attribute->isVarchar())
                         {
                             echo '<input type="text" name="' . $attribute->name . '">';
                         } else {
