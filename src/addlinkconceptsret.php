@@ -5,12 +5,12 @@ require_once "../settings.php";
 
 $pdo = getConnection();
 
-$concept = $_GET["concept"];
+$sourceconcept = $_GET["sourceconcept"];
+$destinationconcept = $_GET["destinationconcept"];
 
 
 $conceptDao = new ConceptDao($pdo);
-$conceptDao->addDataForConcept($concept, $_GET);
-$success = $conceptDao->createConcept($concept);
+$success = $conceptDao->linkConcept($sourceconcept, $destinationconcept);
 if ($success)
 {
     header("Location: index.php");

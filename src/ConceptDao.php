@@ -25,7 +25,10 @@ class ConceptDao
         $tables = $pdoStatement->fetchAll();
         foreach($tables as $key => $table)
         {
-            $conceptNames[]= $table["table_name"];
+            if (strpos($table["table_name"], '_') === FALSE)
+            {
+                $conceptNames[]= $table["table_name"];
+            }
         }
         return $conceptNames;
     }
@@ -135,5 +138,15 @@ class ConceptDao
         }
         return $success;
 
+    }
+
+    public function linkConcept($sourceconcept, $destinationconcept)
+    {
+        $pdoStatement = $this->pdo->prepare("CREATE TABLE _${sourceconcept}2${destinationconcept} (id${sourceconcept} INT, id${destinationconcept} INT)");
+        $success = $pdoStatement->execute();
+        if (!$success) {
+            var_dump($pdoStatement->errorInfo());
+        }
+        return $success;
     }
 }

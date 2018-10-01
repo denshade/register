@@ -10,7 +10,7 @@ $concept = $_GET["concept"];
 
 $conceptDao = new ConceptDao($pdo);
 $success = $conceptDao->createConcept($concept);
-if (success)
+if ($success)
 {
     header("Location: index.php");
 }
