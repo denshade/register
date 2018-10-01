@@ -115,8 +115,11 @@ class ConceptDao
             $values []= $value;
         }
         $success = $this->pdo->exec("INSERT INTO $concept (".implode(",", $attributeNames).") VALUES(".implode(",", $values).")");
-        var_dump($success);
-        var_dump($this->pdo->errorInfo());
+        if (!$success)
+        {
+            var_dump($this->pdo->errorInfo());
+        }
+        return $success;
     }
 
     public function createConcept($concept)
@@ -149,4 +152,24 @@ class ConceptDao
         }
         return $success;
     }
+
+    /***
+     * @return array
+     */
+    public function getConceptLinks()
+    {
+        $conceptNames = [];
+        $pdoStatement = $this->pdo->prepare('SELECT table_name FROM information_schema.tables where table_schema=\'register\'');
+        $pdoStatement->execute();
+        $tables = $pdoStatement->fetchAll();
+        foreach($tables as $key => $table)
+        {
+            if (strpos($table["table_name"], '_') !== FALSE)
+            {
+                $conceptNames[]= explode('2', substr($table["table_name"],1));
+            }
+        }
+        return $conceptNames;
+    }
+
 }

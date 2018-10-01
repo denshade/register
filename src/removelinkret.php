@@ -9,7 +9,7 @@ $concept = $_GET["concept"];
 
 
 $conceptDao = new ConceptDao($pdo);
-$success = $conceptDao->addDataForConcept($concept, $_GET);
+$success = $conceptDao->dropTable($concept);
 if ($success)
 {
     header("Location: index.php");

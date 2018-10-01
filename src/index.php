@@ -24,9 +24,7 @@ try {
     <?php
     include "navbar.php";
     ?>
-    <div class="jumbotron">
         <h1>The available concepts:</h1>
-            </div>
     <table class="table">
         <thead>
         <th>Name</th><th></th><th></th><th></th><th></th>
@@ -51,6 +49,30 @@ try {
     </table>
     <button class="btn btn-primary" onclick='window.location.href="addconcept.php";'>Add concept</button>
     <button class="btn btn-primary" onclick='window.location.href="addlinkconcepts.php";'>Link two concepts</button>
+
+    <h1>The available links:</h1>
+    <table class="table">
+        <thead>
+        <th>Name</th><th></th>
+        </thead>
+        <tbody>
+        <?php
+        $conceptDao = new ConceptDao($pdo);
+        foreach($conceptDao->getConceptLinks() as $concept)
+        {
+            $fromConcept = $concept[0];
+            $toConcept = $concept[1];
+
+            echo "<tr>
+                    <td>$fromConcept => $toConcept</td>
+                    <td><a href='removelinkret.php?concept=_${fromConcept}2${toConcept}'>Remove link</a></td>
+                    </tr>";
+        }
+
+        ?>
+
+        </tbody>
+    </table>
 
 </div>
     </body>
