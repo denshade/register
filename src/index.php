@@ -48,7 +48,6 @@ try {
         </tbody>
     </table>
     <button class="btn btn-primary" onclick='window.location.href="addconcept.php";'>Add concept</button>
-    <button class="btn btn-primary" onclick='window.location.href="addlinkconcepts.php";'>Link two concepts</button>
 
     <h1>The available links:</h1>
     <table class="table">
@@ -74,6 +73,7 @@ try {
 
         </tbody>
     </table>
+    <button class="btn btn-primary" onclick='window.location.href="addlinkconcepts.php";'>Link two concepts</button>
 
 </div>
     </body>
