@@ -33,6 +33,9 @@ $concept2 = $conceptArray[1];
     <div class="container-fluid">
         <h1><?php echo "Link from $concept1";?></h1>
         <form action="addlinkdataret.php" method="get">
+            <input type="hidden" name="concept1" value="<?php echo $concept1;?>">
+            <input type="hidden" name="concept2" value="<?php echo $concept2;?>">
+
         <table class="display nowrap dataTable dtr-inline collapsed" id="concept">
             <thead>
             <tr>
@@ -52,7 +55,7 @@ $concept2 = $conceptArray[1];
             {
                 echo "<tr>";
                 $idAttribute = $attributes[0];
-                $idCheckbox = "<input type='checkbox' concept='$concept1' id='$dataRow[$idAttribute]]'>";
+                $idCheckbox = "<input type='checkbox' name='1_$dataRow[$idAttribute]'>";
                 $counter = 0;
                 foreach ($attributes as $attribute)
                 {
@@ -88,7 +91,7 @@ $concept2 = $conceptArray[1];
             {
                 echo "<tr>";
                 $idAttribute = $attributes[0];
-                $idCheckbox = "<input type='checkbox' concept='$concept2' id='$dataRow[$idAttribute]]'>";
+                $idCheckbox = "<input type='checkbox' name='2_$dataRow[$idAttribute]'>";
                 $counter = 0;
                 foreach ($attributes as $attribute)
                 {
