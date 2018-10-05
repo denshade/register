@@ -11,9 +11,8 @@ try {
     //redirect to login.php
 }
 $conceptDao = new ConceptDao($pdo);
-if (!key_exists("concept", $_GET)) header( 'Location: index.php' ) ;
 
-$concept = $_GET["concept"];
+$concept = @$_GET["concept"];
 ?>
 <html>
 <head>
@@ -29,7 +28,21 @@ $concept = $_GET["concept"];
     <br/>
     <div class="container-fluid">
         <h1>
-            Data for <?php echo $concept; ?>
+            <form action="view_concept_list.php">
+            Data for <select name="concept" onchange="this.form.submit();">
+                <?php
+                    foreach ($conceptDao->getConcepts() as $conceptOption)
+                    {
+                        $selected = "";
+                        if ( $conceptOption == $concept)
+                        {
+                            $selected = "selected=\"selected\"";
+                        }
+                        echo "<option $selected value='$conceptOption'>$conceptOption</option>";
+                    }
+                ?>
+            </select>
+            </form>
         </h1>
         <table class="display nowrap dataTable dtr-inline collapsed" id="concept">
             <thead>
