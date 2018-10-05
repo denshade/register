@@ -75,7 +75,7 @@ try {
 
         </tbody>
     </table>
-    <button class="btn btn-primary" onclick='window.location.href="addlinkconcepts.php";'>Link two concepts</button>
+    <button class="btn btn-success" onclick='window.location.href="addlinkconcepts.php";'>Link two concepts</button>
 </div>
     </body>
     </html>

@@ -62,9 +62,7 @@ $concept = $_GET["concept"];
                 <label>Options</label>
                 <div class="cols-sm-10">
                     <div class="input-group">
-                        <textarea id="options" class="form-control" name="options">
-
-                        </textarea>
+                        <textarea id="options" class="form-control" name="options"></textarea>
                     </div>
                 </div>
             </div>
@@ -103,12 +101,13 @@ $concept = $_GET["concept"];
     </div>
 
     <script>
+        setreadonly();
         function setreadonly()
         {
             var e = document.getElementById("type");
             var strUser = e.options[e.selectedIndex].value;
             var area = document.getElementById("options");
-            area.disabled = strUser.indexOf("enum") == -1;
+            area.disabled = strUser.indexOf("enum") === -1;
         }
     </script>
 
