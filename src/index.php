@@ -18,13 +18,14 @@ try {
     <?php
     include "headerbootstrap.php";
     ?>
+
 </head>
 <body>
 <div class="container-fluid">
     <?php
     include "navbar.php";
     ?>
-        <h1>The available concepts:</h1>
+    <h1><div class="alert alert-info">The available concepts</div></h1>
     <table class="table">
         <thead>
         <th>Name</th><th></th><th></th><th></th><th></th>
@@ -47,10 +48,10 @@ try {
 
         </tbody>
     </table>
-    <button class="btn btn-primary" onclick='window.location.href="addconcept.php";'>Add concept</button>
-    <button class="btn btn-primary" onclick='window.location.href="addlinkconcepts.php";'>Link two concepts</button>
-
-    <h1>The available links:</h1>
+    <button class="btn btn-success" onclick='window.location.href="addconcept.php";'>Add concept</button>
+    <hr/>
+    <div>
+    <h1><div class="alert alert-info">The available links</div></h1>
     <table class="table">
         <thead>
         <th>Name</th><th></th><th></th>
@@ -74,7 +75,8 @@ try {
 
         </tbody>
     </table>
-
+    <button class="btn btn-success" onclick='window.location.href="addlinkconcepts.php";'>Link two concepts</button>
+    </div>
 </div>
     </body>
     </html>

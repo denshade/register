@@ -44,19 +44,31 @@ $concept = $_GET["concept"];
                 <div class="cols-sm-10">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                        <select class="form-control" id="type" name="type">
+                        <select class="form-control"  id="type" onchange="setreadonly();" name="type">
                             <option value="boolean">Boolean</option>
                             <option value="double">Decimal</option>
                             <option value="date">Date</option>
                             <option value="datetime">DateTime</option>
-                            <option value="int">Integer(-2147483648 to 2147483647)</option>
-                            <option value="varchar(255)">Limited Size Text(255)</option>
+                            <option value="int">Integer [-2147483648 to 2147483647]</option>
+                            <option value="varchar(255)">Limited Size Text [255 characters]</option>
                             <option value="enum">Limited list of options</option>
                             <option value="text">Unlimited text</option>
                         </select>
                     </div>
                 </div>
             </div>
+
+            <div>
+                <label>Options</label>
+                <div class="cols-sm-10">
+                    <div class="input-group">
+                        <textarea id="options" class="form-control" name="options">
+
+                        </textarea>
+                    </div>
+                </div>
+            </div>
+            <p/>
             <input type="hidden" name="concept" id="concept" value="<?php echo $concept; ?>">
 
             <div class="form-group">
@@ -88,15 +100,17 @@ $concept = $_GET["concept"];
             }
             ?>
 
-            <?php
-            // Get the username/password from the session.
-            // check if you can connect using the username/pwd.
-            // Check if the table exists.
-            // Build the header.
-            // SELECT * FROM table.
-            //
-            ?>
     </div>
+
+    <script>
+        function setreadonly()
+        {
+            var e = document.getElementById("type");
+            var strUser = e.options[e.selectedIndex].value;
+            var area = document.getElementById("options");
+            area.disabled = strUser.indexOf("enum") == -1;
+        }
+    </script>
 
 </div>
 </body>

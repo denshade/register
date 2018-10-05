@@ -30,11 +30,11 @@ $conceptDao = new ConceptDao($pdo);
                 <div class="cols-sm-10">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                        <input type="text" class="form-control" name="concept" id="concept" placeholder="Name of the new concept">
+                        <input type="text" class="form-control" name="concept" id="concept" placeholder="Name of the new concept" maxlength="255">
                     </div>
                 </div>
             </div>
             <input class="btn btn-primary" type="submit" value="Create new concept">
-            <button class="btn btn-secondary">Cancel</button>
+            <button class="btn btn-secondary" onclick='window.location.href="index.php";return false;'>Cancel</button>
         </form>
 </body>
