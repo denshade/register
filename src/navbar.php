@@ -11,6 +11,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="view_concept_list.php">Concept data</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="portdata.php">Export and import data</a>
+            </li>
         </ul>
     </div>
 </nav>

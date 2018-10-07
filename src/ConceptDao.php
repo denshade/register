@@ -207,4 +207,11 @@ class ConceptDao
 
     }
 
+    public function showCreateTable($concept)
+    {
+        $pdoStatement = $this->pdo->prepare('SHOW CREATE TABLE '.$concept);
+        $pdoStatement->execute();
+        return $pdoStatement->fetchAll();
+    }
+
 }
