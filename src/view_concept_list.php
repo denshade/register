@@ -73,14 +73,12 @@ $concept = @$_GET["concept"];
             ?>
             </tbody>
         </table>
+        <?php echo "<input type=\"button\" class=\"btn btn-success\" onclick=\"location.href='dataentryform.php?concept=$concept';\" value=\"Add data\" />";
+        ?>
         <script>$('#concept').DataTable({paging: false});</script>
 
-        <?php
-        // Get the username/password from the session.
-        // check if you can connect using the username/pwd.
-        // Check if the table exists.
-        // Build the header.
-        // SELECT * FROM table.
-        //
-        ?>
+
     </div>
+</div>
+</body>
+</html>

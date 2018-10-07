@@ -12,5 +12,5 @@ $conceptDao = new ConceptDao($pdo);
 $success = $conceptDao->addDataForConcept($concept, $_GET);
 if ($success)
 {
-    header("Location: index.php");
+    header("Location: view_concept_list.php?concept=$concept");
 }

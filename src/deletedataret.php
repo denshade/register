@@ -13,5 +13,5 @@ $conceptDao = new ConceptDao($pdo);
 $success = $conceptDao->deleteData($concept, $id);
 if ($success)
 {
-    header("Location: view_concept_list.php");
+    header("Location: view_concept_list.php?concept=$concept");
 }
