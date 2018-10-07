@@ -53,7 +53,7 @@ try {
     <h1><div class="alert alert-info">The available links</div></h1>
     <table class="table">
         <thead>
-        <th>Name</th><th></th><th></th>
+        <th>Name</th><th></th><th></th><th></th>
         </thead>
         <tbody>
         <?php
@@ -67,6 +67,7 @@ try {
                     <td>$fromConcept => $toConcept</td>
                     <td><a href='removelinkret.php?concept=_${fromConcept}2${toConcept}'>Remove link</a></td>
                     <td><a href='addlinkdata.php?concept=_${fromConcept}2${toConcept}'>Add link data</a></td>
+                    <td><a href='combinedata.php?concept1=${fromConcept}&concept2=${toConcept}'>Combine data</a></td>
                     </tr>";
         }
 

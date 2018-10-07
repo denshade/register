@@ -29,6 +29,8 @@ $concept = @$_GET["concept"];
             <form action="view_concept_list.php">
                 Data for <select name="concept" onchange="this.form.submit();">
                     <?php
+                    echo "<option value=''></option>";
+
                     foreach ($conceptDao->getConcepts() as $conceptOption) {
                         $selected = "";
                         if ($conceptOption == $concept) {

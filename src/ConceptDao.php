@@ -89,7 +89,7 @@ class ConceptDao
             var_dump($pdoStatement->errorInfo());
             var_dump("ALTER TABLE $tablename ADD COLUMN $columnName $type");
         }
-
+        return $success;
     }
 
     public function addDataForConcept($concept, $map, $sliceOffset = true)
@@ -188,6 +188,23 @@ class ConceptDao
             var_dump($pdoStatement->errorInfo());
         }
         return $success;
+    }
+
+    public function getCombinedDataForConcept($concept1, $concept2)
+    {
+        /**
+         * SELECT * FROM _donor2sample
+         *   INNER JOIN donor ON donor.iddonor = _donor2sample.iddonor
+         *   INNER JOIN sample ON sample.idsample = _donor2sample.idsample;
+
+         */
+        $jointable = "_${concept1}2${concept2}";
+        $pdoStatement = $this->pdo->prepare('SELECT * FROM ' . $jointable . ' INNER JOIN '. $concept1 . ' ON '. "${concept1}.id${concept1} = ${jointable}.id${concept1}"
+        . ' INNER JOIN '. $concept2 . ' ON '. "${concept2}.id${concept2} = ${jointable}.id${concept2}");
+        $pdoStatement->execute();
+        $data = $pdoStatement->fetchAll();
+        return $data;
+
     }
 
 }
