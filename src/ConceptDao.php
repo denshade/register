@@ -180,4 +180,14 @@ class ConceptDao
         return $conceptNames;
     }
 
+    public function deleteData($concept, $id)
+    {
+        $pdoStatement = $this->pdo->prepare('DELETE FROM '.$concept.' WHERE id'.$concept.'='.$id);
+        $success = $pdoStatement->execute();
+        if (!$success) {
+            var_dump($pdoStatement->errorInfo());
+        }
+        return $success;
+    }
+
 }

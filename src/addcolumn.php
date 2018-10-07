@@ -33,7 +33,7 @@ $concept = $_GET["concept"];
                 <div class="cols-sm-10">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                        <input type="text" class="form-control" name="name" id="name"
+                        <input type="text" onkeypress="removeSpaces();" class="form-control" name="name" id="name"
                                placeholder="Enter the name of column">
                     </div>
                 </div>
@@ -102,13 +102,7 @@ $concept = $_GET["concept"];
 
     <script>
         setreadonly();
-        function setreadonly()
-        {
-            var e = document.getElementById("type");
-            var strUser = e.options[e.selectedIndex].value;
-            var area = document.getElementById("options");
-            area.disabled = strUser.indexOf("enum") === -1;
-        }
+
     </script>
 
 </div>
