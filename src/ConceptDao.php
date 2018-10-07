@@ -25,7 +25,7 @@ class ConceptDao
         $tables = $pdoStatement->fetchAll();
         foreach($tables as $key => $table)
         {
-            if (strpos($table["table_name"], '_') === FALSE)
+            if (strpos($table["table_name"], '_') !== 0)
             {
                 $conceptNames[]= $table["table_name"];
             }
@@ -172,7 +172,7 @@ class ConceptDao
         $tables = $pdoStatement->fetchAll();
         foreach($tables as $key => $table)
         {
-            if (strpos($table["table_name"], '_') !== FALSE)
+            if (strpos($table["table_name"], '_') === 0)
             {
                 $conceptNames[]= explode('2', substr($table["table_name"],1));
             }

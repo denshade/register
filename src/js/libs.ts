@@ -6,8 +6,8 @@ function setreadonly()
     area.disabled = strUser.indexOf("enum") === -1;
 }
 
-function removeSpaces()
+function removeSpaces(name)
 {
-    let nameElement = document.getElementById("name") as HTMLInputElement;
+    let nameElement = document.getElementById(name) as HTMLInputElement;
     nameElement.value = nameElement.value.replace(" ", "_");
 }

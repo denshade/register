@@ -4,7 +4,7 @@ function setreadonly() {
     var area = document.getElementById("options");
     area.disabled = strUser.indexOf("enum") === -1;
 }
-function removeSpaces() {
-    var nameElement = document.getElementById("name");
+function removeSpaces(name) {
+    var nameElement = document.getElementById(name);
     nameElement.value = nameElement.value.replace(" ", "_");
 }

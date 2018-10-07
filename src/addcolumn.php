@@ -33,7 +33,7 @@ $concept = $_GET["concept"];
                 <div class="cols-sm-10">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                        <input type="text" onkeypress="removeSpaces();" class="form-control" name="name" id="name"
+                        <input type="text" onkeypress="removeSpaces('name');" class="form-control" name="name" id="name"
                                placeholder="Enter the name of column">
                     </div>
                 </div>
@@ -88,13 +88,21 @@ $concept = $_GET["concept"];
             <tr>
                 <th>Name</th>
                 <th>Type</th>
+                <th><!--Remove button--></th>
             </tr>
             </thead>
             <tbody>
             <?php
             $attributes = $conceptDao->getAttributes($concept);
+            $counter = 0;
             foreach ($attributes as $attribute) {
-                echo "<tr><td>$attribute->name</td><td>$attribute->type</td></tr>";
+                $button = "";
+                if ($counter++ > 0) {
+                    $button = "<form action='removecolumnret.php'><input type='submit' class='btn btn-warning' value='X'/><input type='hidden' name='concept' value='$concept'><input type='hidden' name='column' value='$attribute->name'></form>";
+                }
+                echo "<tr>";
+                echo "<td>$attribute->name</td><td>$attribute->type</td><td>$button</td>";
+                echo "</tr>";
             }
             ?>
 

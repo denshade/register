@@ -30,7 +30,7 @@ $conceptDao = new ConceptDao($pdo);
                 <div class="cols-sm-10">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                        <input type="text" class="form-control" name="concept" id="concept" placeholder="Name of the new concept" maxlength="255">
+                        <input type="text" class="form-control" name="concept" onkeypress="removeSpaces('concept')" id="concept" placeholder="Name of the new concept" maxlength="255">
                     </div>
                 </div>
             </div>
@@ -38,3 +38,4 @@ $conceptDao = new ConceptDao($pdo);
             <button class="btn btn-secondary" onclick='window.location.href="index.php";return false;'>Cancel</button>
         </form>
 </body>
+</html>
