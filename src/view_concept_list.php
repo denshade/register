@@ -68,6 +68,11 @@ $concept = @$_GET["concept"];
                         <input type='hidden' name='id' value='$id'/>
                         <input type='submit' class='btn btn-warning' value='X'/>
                     </form>
+                    <form action='editformdata.php'>
+                        <input type='hidden' name='concept' value='$concept'/>
+                        <input type='hidden' name='id' value='$id'/>
+                        <input type='submit' class='btn btn-success' value='...'/>
+                    </form>
                     </td>";
                 echo "</tr>";
 
