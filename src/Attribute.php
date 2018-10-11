@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Lieven
- * Date: 23-9-2018
- * Time: 20:26
- */
 
 class Attribute
 {
@@ -29,6 +23,15 @@ class Attribute
     public function isVarchar()
     {
         return strpos($this->type, "varchar") !== FALSE;
+    }
+    public function isText()
+    {
+        return strpos($this->type, "text") !== FALSE;
+    }
+
+    public function isDouble()
+    {
+        return strpos($this->type, "double") !== FALSE;
     }
 
     /**

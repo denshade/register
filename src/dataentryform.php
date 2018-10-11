@@ -38,6 +38,9 @@ try {
                     foreach (array_slice($conceptDao->getAttributes($concept), 1) as $attribute) {
                         echo "<div class=\"row\"> <div class=\"col-2\">";
 
+                        /**
+                         * @var Attribute $attribute
+                         */
                         echo "<label>$attribute->name</label></div><div class=\"col\">";
                         if ($attribute->isBoolean())
                         {
@@ -53,7 +56,16 @@ try {
                         } else if ($attribute->isVarchar())
                         {
                             echo '<input type="text" name="' . $attribute->name . '">';
-                        } else {
+                        }
+                        else if ($attribute->isText())
+                        {
+                            echo '<input type="text" name="' . $attribute->name . '">';
+                        }
+                        else if ($attribute->isDouble())
+                        {
+                            echo '<input type="text" name="' . $attribute->name . '">';
+                        }
+                        else {
                             var_dump($attribute->type);
                         }
                         echo "</div></div>";

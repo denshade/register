@@ -117,14 +117,21 @@ class ConceptDao
                 $value = (int)$value;
             } else if ($attribute->isEnum()) {
                 $value = "'$value'";
-            }else if ($attribute->isVarchar()) {
+            }else if ($attribute->isVarchar() || $attribute->isText()) {
                 $value = "'$value'";
+            }
+            else if ($attribute->isDouble()) {
+                $value = (double)$value;
+            }else {
+                throw new Exception("Unknown attribute type");
             }
             $values []= $value;
         }
-        $success = $this->pdo->exec("INSERT INTO $concept (".implode(",", $attributeNames).") VALUES(".implode(",", $values).")");
+        $sql = "INSERT INTO $concept (".implode(",", $attributeNames).") VALUES(".implode(",", $values).")";
+        $success = $this->pdo->exec($sql);
         if (!$success)
         {
+            var_dump($sql);
             var_dump($this->pdo->errorInfo());
         }
         return $success;
@@ -243,8 +250,12 @@ class ConceptDao
                 $value = (int)$value;
             } else if ($attribute->isEnum()) {
                 $value = "'$value'";
-            }else if ($attribute->isVarchar()) {
+            }else if ($attribute->isVarchar() || $attribute->isText()) {
                 $value = "'$value'";
+            }else if ($attribute->isDouble()) {
+                $value = (double)$value;
+            } else {
+                throw new Exception("Unknown attribute type");
             }
             $setStrings []= $attribute->name . "=" . $value;
 
@@ -253,6 +264,18 @@ class ConceptDao
         if (!$success)
         {
             var_dump($this->pdo->errorInfo());
+        }
+        return $success;
+    }
+
+    public function dropTableColumn($concept, $columnname)
+    {
+        $pdoStatement = $this->pdo->prepare('ALTER TABLE '.$concept.' DROP COLUMN '.$columnname);
+        var_dump('ALTER TABLE '.$concept.' DROP COLUMN '.$columnname);
+        $success = $pdoStatement->execute();
+        if (!$success)
+        {
+            var_dump($pdoStatement->errorInfo());
         }
         return $success;
     }

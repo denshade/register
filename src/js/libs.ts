@@ -9,5 +9,10 @@ function setreadonly()
 function removeSpaces(name)
 {
     let nameElement = document.getElementById(name) as HTMLInputElement;
-    nameElement.value = nameElement.value.replace(" ", "_");
+    nameElement.value = replaceAll(nameElement.value," ", "_");
 }
+
+function replaceAll(value, search, replacement) {
+
+    return value.replace(new RegExp(search, 'g'), replacement);
+};

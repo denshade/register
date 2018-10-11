@@ -42,6 +42,9 @@ try {
                         echo "<div class=\"row\"> <div class=\"col-2\">";
                         $value = $conceptData[$attribute->name];
                         echo "<label>$attribute->name</label></div><div class=\"col\">";
+                        /**
+                         * @var $attribute Attribute
+                         */
                         if ($attribute->isBoolean())
                         {
                             $checked = "";
@@ -61,7 +64,7 @@ try {
                                 echo '<option $selected value="' . $option . '">' . $option . '</option>';
                             }
                             echo '</select>';
-                        } else if ($attribute->isVarchar())
+                        } else if ($attribute->isVarchar() || $attribute->isText())
                         {
                             echo '<input type="text" name="' . $attribute->name . '" value="'.$value.'">';
                         } else {
