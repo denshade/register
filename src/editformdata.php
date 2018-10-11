@@ -6,6 +6,8 @@ try {
     $pdo = getConnection();
     $conceptDao = new ConceptDao($pdo);
     $concept = $_GET['concept'];
+    $id = $_GET['id'];
+    $conceptData = $conceptDao->getById($concept, $id);
 } catch (PDOException $exception) {
     header("Location: login.php");
     return;
@@ -31,42 +33,42 @@ try {
             </div>
             <div class="card-body">
 
-                <form action="dataentryformret.php">
+                <form action="editformdataret.php">
 
                     <?php
                     echo '<input type="hidden" name="concept" value="'.$concept.'"/>';
+                    echo '<input type="hidden" name="id" value="'.$id.'"/>';
                     foreach (array_slice($conceptDao->getAttributes($concept), 1) as $attribute) {
                         echo "<div class=\"row\"> <div class=\"col-2\">";
-
-                        /**
-                         * @var Attribute $attribute
-                         */
+                        $value = $conceptData[$attribute->name];
                         echo "<label>$attribute->name</label></div><div class=\"col\">";
+                        /**
+                         * @var $attribute Attribute
+                         */
                         if ($attribute->isBoolean())
                         {
-                            echo '<input type="checkbox" name="' . $attribute->name.'">';
+                            $checked = "";
+                            if ($value == 1){
+                                $checked = "checked";
+                            }
+                            echo '<input type="checkbox" name="' . $attribute->name.'" '.$checked.'>';
                         } else if ($attribute->isInt()) {
-                            echo '<input type="number" name="' . $attribute->name . '">';
+                            echo '<input type="number" name="' . $attribute->name . '" value='.$value.'>';
                         } else if ($attribute->isEnum()) {
                             echo '<select name="'.$attribute->name .'">';
                             foreach ($attribute->getOptions() as $option) {
-                                echo '<option value="' . $option . '">' . $option . '</option>';
+                                $selected = "";
+                                if ($option == $option) {
+                                    $selected = "selected";
+                                }
+                                echo '<option $selected value="' . $option . '">' . $option . '</option>';
                             }
                             echo '</select>';
-                        } else if ($attribute->isVarchar())
+                        } else if ($attribute->isVarchar() || $attribute->isText())
                         {
-                            echo '<input type="text" name="' . $attribute->name . '">';
-                        }
-                        else if ($attribute->isText())
-                        {
-                            echo '<input type="text" name="' . $attribute->name . '">';
-                        }
-                        else if ($attribute->isDouble())
-                        {
-                            echo '<input type="text" name="' . $attribute->name . '">';
-                        }
-                        else {
-                            var_dump($attribute->type);
+                            echo '<input type="text" name="' . $attribute->name . '" value="'.$value.'">';
+                        } else {
+                            throw new Exception("Unknown attribute type" . $attribute->type);
                         }
                         echo "</div></div>";
                     }

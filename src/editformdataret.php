@@ -6,11 +6,11 @@ require_once "../settings.php";
 $pdo = getConnection();
 
 $concept = $_GET["concept"];
-$columnname = $_GET["column"];
+$id = $_GET["id"];
 
 $conceptDao = new ConceptDao($pdo);
-$success = $conceptDao->dropTableColumn($concept, $columnname);
+$success = $conceptDao->updateDataForConcept($concept, $id, $_GET);
 if ($success)
 {
-    header("Location: addcolumn.php?concept=$concept");
+    header("Location: view_concept_list.php?concept=$concept");
 }

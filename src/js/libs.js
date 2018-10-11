@@ -6,5 +6,9 @@ function setreadonly() {
 }
 function removeSpaces(name) {
     var nameElement = document.getElementById(name);
-    nameElement.value = nameElement.value.replace(" ", "_");
+    nameElement.value = replaceAll(nameElement.value, " ", "_");
 }
+function replaceAll(value, search, replacement) {
+    return value.replace(new RegExp(search, 'g'), replacement);
+}
+;
