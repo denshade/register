@@ -68,7 +68,7 @@ try {
                         {
                             echo '<input type="text" name="' . $attribute->name . '" value="'.$value.'">';
                         } else {
-                            var_dump($attribute->type);
+                            throw new Exception("Unknown attribute type" . $attribute->type);
                         }
                         echo "</div></div>";
                     }
