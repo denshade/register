@@ -25,11 +25,11 @@ try {
     <?php
     include "navbar.php";
     ?>
-    <h1><div class="alert alert-info">The available concepts</div></h1>
+    <div class="alert alert-info"><h1>The available concepts</h1></div>
     <table class="table">
-        <thead>
+        <thead><tr>
         <th>Name</th><th></th><th></th><th></th><th></th>
-        </thead>
+        </tr></thead>
         <tbody>
 <?php
         $conceptDao = new ConceptDao($pdo);
@@ -50,11 +50,11 @@ try {
     <button class="btn btn-success" onclick='window.location.href="addconcept.php";'>Add concept</button>
     <hr/>
     <div>
-    <h1><div class="alert alert-info">The available links</div></h1>
+        <div class="alert alert-info"><h1>The available links</h1></div>
     <table class="table">
-        <thead>
+        <thead><tr>
         <th>Name</th><th></th><th></th><th></th>
-        </thead>
+        </tr></thead>
         <tbody>
         <?php
         $conceptDao = new ConceptDao($pdo);
