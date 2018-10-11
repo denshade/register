@@ -63,15 +63,15 @@ $concept = @$_GET["concept"];
                     echo "<td>$dataRow[$attribute]</td>";
                 }
                 echo "<td>
-                    <form action='deletedataret.php'>
-                        <input type='hidden' name='concept' value='$concept'/>
-                        <input type='hidden' name='id' value='$id'/>
-                        <input type='submit' class='btn btn-warning' value='X'/>
-                    </form>
-                    <form action='editformdata.php'>
+                    <form style='display:inline;' action='editformdata.php'>
                         <input type='hidden' name='concept' value='$concept'/>
                         <input type='hidden' name='id' value='$id'/>
                         <input type='submit' class='btn btn-success' value='...'/>
+                    </form>
+                    <form style='display:inline;' action='deletedataret.php'>
+                        <input type='hidden' name='concept' value='$concept'/>
+                        <input type='hidden' name='id' value='$id'/>
+                        <input type='submit' class='btn btn-danger' value='X'/>
                     </form>
                     </td>";
                 echo "</tr>";

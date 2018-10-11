@@ -51,11 +51,11 @@ try {
                             if ($value == 1){
                                 $checked = "checked";
                             }
-                            echo '<input type="checkbox" name="' . $attribute->name.'" '.$checked.'>';
+                            echo '<input type="checkbox" class="form-control" name="' . $attribute->name.'" '.$checked.'>';
                         } else if ($attribute->isInt()) {
-                            echo '<input type="number" name="' . $attribute->name . '" value='.$value.'>';
+                            echo '<input type="number" class="form-control" name="' . $attribute->name . '" value='.$value.'>';
                         } else if ($attribute->isEnum()) {
-                            echo '<select name="'.$attribute->name .'">';
+                            echo '<select class="form-control" name="'.$attribute->name .'">';
                             foreach ($attribute->getOptions() as $option) {
                                 $selected = "";
                                 if ($option == $option) {
@@ -66,13 +66,18 @@ try {
                             echo '</select>';
                         } else if ($attribute->isVarchar() || $attribute->isText())
                         {
-                            echo '<input type="text" name="' . $attribute->name . '" value="'.$value.'">';
-                        } else {
+                            echo '<input class="form-control" type="text" name="' . $attribute->name . '" value="'.$value.'">';
+                        }else if ($attribute->isDouble())
+                        {
+                            echo '<input class="form-control" type="number" step="any" name="' . $attribute->name . '" value="'.$value.'">';
+                        }
+                        else {
                             throw new Exception("Unknown attribute type" . $attribute->type);
                         }
                         echo "</div></div>";
                     }
                     ?>
+                    <hr/>
                     <input class="btn btn-primary" type="submit" value="Save"/>
                     <button class="btn btn-secondary" onclick="window.location.href = 'index.php';return false;">Cancel</button>
                 </form>

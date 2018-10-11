@@ -44,26 +44,22 @@ try {
                         echo "<label>$attribute->name</label></div><div class=\"col\">";
                         if ($attribute->isBoolean())
                         {
-                            echo '<input type="checkbox" name="' . $attribute->name.'">';
+                            echo '<input type="checkbox" class="form-control" name="' . $attribute->name.'">';
                         } else if ($attribute->isInt()) {
-                            echo '<input type="number" name="' . $attribute->name . '">';
+                            echo '<input type="number" class="form-control" name="' . $attribute->name . '">';
                         } else if ($attribute->isEnum()) {
-                            echo '<select name="'.$attribute->name .'">';
+                            echo '<select class="form-control" name="'.$attribute->name .'">';
                             foreach ($attribute->getOptions() as $option) {
                                 echo '<option value="' . $option . '">' . $option . '</option>';
                             }
                             echo '</select>';
-                        } else if ($attribute->isVarchar())
+                        } else if ($attribute->isVarchar() || $attribute->isText())
                         {
-                            echo '<input type="text" name="' . $attribute->name . '">';
-                        }
-                        else if ($attribute->isText())
-                        {
-                            echo '<input type="text" name="' . $attribute->name . '">';
+                            echo '<input class="form-control" type="text" name="' . $attribute->name . '">';
                         }
                         else if ($attribute->isDouble())
                         {
-                            echo '<input type="text" name="' . $attribute->name . '">';
+                            echo '<input class="form-control" type="text"  name="' . $attribute->name . '">';
                         }
                         else {
                             var_dump($attribute->type);
