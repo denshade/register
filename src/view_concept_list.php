@@ -81,6 +81,7 @@ $concept = @$_GET["concept"];
             </tbody>
         </table>
         <?php echo "<input type=\"button\" class=\"btn btn-success\" onclick=\"location.href='dataentryform.php?concept=$concept';\" value=\"Add data\" />";
+        echo " <input type=\"button\" class=\"btn btn-success\" onclick=\"location.href='exportdatabase.php?concept=$concept';\" value=\"Download as CSV\" />";
         ?>
         <script>$('#concept').DataTable({paging: false});</script>
 
