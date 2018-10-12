@@ -25,7 +25,6 @@ try {
     <br/>
     <h1><div class="alert alert-info">Export database</div></h1>
     <button class="btn btn-success" onclick='window.location.href="exportschema.php";'>Export database schema (no data)</button>
-    <button class="btn btn-success" onclick='window.location.href="exportdatabase.php";'>Export all database data(includes data)</button>
     <hr/>
     <h1><div class="alert alert-info">Import database</div></h1>
 
