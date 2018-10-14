@@ -9,8 +9,11 @@ $id = $_GET["id"];
 
 
 $conceptDao = new ConceptDao($pdo);
-$success = $conceptDao->deleteData($concept, $id);
-if ($success)
-{
+try {
+    $conceptDao->deleteData($concept, $id);
     header("Location: view_concept_list.php?concept=$concept");
+} catch(Exception $e)
+{
+    require_once("ErrorView.php");
+    ErrorView::showError($e);
 }

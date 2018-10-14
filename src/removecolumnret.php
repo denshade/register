@@ -9,8 +9,11 @@ $concept = $_GET["concept"];
 $columnname = $_GET["column"];
 
 $conceptDao = new ConceptDao($pdo);
-$success = $conceptDao->dropTableColumn($concept, $columnname);
-if ($success)
-{
+try {
+    $conceptDao->dropTableColumn($concept, $columnname);
     header("Location: addcolumn.php?concept=$concept");
+} catch (Exception $e)
+{
+    require_once("ErrorView.php");
+    ErrorView::showError($e);
 }

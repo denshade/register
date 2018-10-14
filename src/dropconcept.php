@@ -7,9 +7,11 @@ require "connection.php";
 $concept = $_GET["concept"];
 
 $conceptDao = new ConceptDao($pdo);
-$success = $conceptDao->dropTable($concept);
-
-if ($success)
-{
+try {
+    $conceptDao->dropTable($concept);
     header("Location: index.php");
+} catch (Exception $e)
+{
+    require_once("ErrorView.php");
+    ErrorView::showError($e);
 }

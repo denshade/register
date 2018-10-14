@@ -9,8 +9,12 @@ $concept = $_GET["concept"];
 
 
 $conceptDao = new ConceptDao($pdo);
-$success = $conceptDao->createConcept($concept);
-if ($success)
-{
+try {
+    $conceptDao->createConcept($concept);
     header("Location: index.php");
+} catch(Exception $e)
+{
+    require_once("ErrorView.php");
+    ErrorView::showError($e);
 }
+

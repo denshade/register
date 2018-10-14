@@ -26,13 +26,12 @@ $concept = @$_GET["concept"];
                 Data for <select name="concept" onchange="this.form.submit();">
                     <?php
                     echo "<option value=''></option>";
-
-                    foreach ($conceptDao->getConcepts() as $conceptOption) {
-                        $selected = "";
-                        if ($conceptOption == $concept) {
-                            $selected = "selected=\"selected\"";
-                        }
-                        echo "<option $selected value='$conceptOption'>$conceptOption</option>";
+                        foreach ($conceptDao->getConcepts() as $conceptOption) {
+                            $selected = "";
+                            if ($conceptOption == $concept) {
+                                $selected = "selected=\"selected\"";
+                            }
+                            echo "<option $selected value='$conceptOption'>$conceptOption</option>";
                     }
                     ?>
                 </select>
@@ -42,23 +41,28 @@ $concept = @$_GET["concept"];
             <thead>
             <tr>
                 <?php
-                $attributes = $conceptDao->getAttributesNames($concept);
-                foreach ($attributes as $attribute) {
-                    echo "<th>$attribute</th>";
+                if (strlen($concept) > 0) {
+
+                    $attributes = $conceptDao->getAttributesNames($concept);
+                    foreach ($attributes as $attribute) {
+                        echo "<th>$attribute</th>";
+                    }
+                    echo '<th style="width:  8.33%"><!--delete button--></th>';
                 }
-                echo '<th style="width:  8.33%"><!--delete button--></th>';
                 ?>
             </tr>
             </thead>
             <tbody>
             <?php
-            foreach ($conceptDao->getDataForConcept($concept) as $dataRow) {
-                echo "<tr>";
-                $id = $dataRow[$attributes[0]];
-                foreach ($attributes as $attribute) {
-                    echo "<td>$dataRow[$attribute]</td>";
-                }
-                echo "<td>
+            if (strlen($concept) > 0) {
+
+                foreach ($conceptDao->getDataForConcept($concept) as $dataRow) {
+                    echo "<tr>";
+                    $id = $dataRow[$attributes[0]];
+                    foreach ($attributes as $attribute) {
+                        echo "<td>$dataRow[$attribute]</td>";
+                    }
+                    echo "<td>
                     <form style='display:inline;' action='editformdata.php'>
                         <input type='hidden' name='concept' value='$concept'/>
                         <input type='hidden' name='id' value='$id'/>
@@ -70,8 +74,9 @@ $concept = @$_GET["concept"];
                         <input type='submit' class='btn btn-danger' value='X'/>
                     </form>
                     </td>";
-                echo "</tr>";
+                    echo "</tr>";
 
+                }
             }
             ?>
             </tbody>

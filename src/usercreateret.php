@@ -17,8 +17,11 @@ $update = @$_POST["update"];
 
 
 $conceptDao = new UserDao($pdo);
-$success = $conceptDao->createUser($username, $password, $create, $drop, $delete, $insert, $update);
-if ($success)
-{
+try {
+    $conceptDao->createUser($username, $password, $create, $drop, $delete, $insert, $update);
     header("Location: users.php");
+} catch (Exception $e)
+{
+    $conceptDao->dropTable($concept);
+    header("Location: index.php");
 }

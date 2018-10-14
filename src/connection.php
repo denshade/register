@@ -10,7 +10,7 @@ if ($login == null || $password == null)
 
 function getConnection($username, $password)
 {
-    return new PDO(getDbString(), $username, $password);
+    return new PDO(getDbString(), $username, $password, [ PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
 }
 
 

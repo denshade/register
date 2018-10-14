@@ -92,6 +92,13 @@ class ConceptDao
         return $success;
     }
 
+    /**
+     * @param $concept
+     * @param $map
+     * @param bool $sliceOffset
+     * @return int
+     * @throws Exception
+     */
     public function addDataForConcept($concept, $map, $sliceOffset = true)
     {
         $attributes = $this->getAttributes($concept);
@@ -128,13 +135,7 @@ class ConceptDao
             $values []= $value;
         }
         $sql = "INSERT INTO $concept (".implode(",", $attributeNames).") VALUES(".implode(",", $values).")";
-        $success = $this->pdo->exec($sql);
-        if (!$success)
-        {
-            var_dump($sql);
-            var_dump($this->pdo->errorInfo());
-        }
-        return $success;
+        $this->pdo->exec($sql);
     }
 
     public function createConcept($concept)

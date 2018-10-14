@@ -18,20 +18,21 @@ foreach ($_GET as $key => $value)
     if (strpos($key, "2_") > -1)
         $secondConceptKeys[] = substr($key, 2);
 }
+try {
 
-foreach ($firstConceptKeys as $firstKey)
-{
-    foreach ($secondConceptKeys as $secondKey)
-    {
-        $success = $conceptDao->addDataForConcept("_".$concept1."2".$concept2, [
-            "id$concept1" => $firstKey,
-            "id$concept2" => $secondKey
-        ], false);
+    foreach ($firstConceptKeys as $firstKey) {
+        foreach ($secondConceptKeys as $secondKey) {
+            $success = $conceptDao->addDataForConcept("_" . $concept1 . "2" . $concept2, [
+                "id$concept1" => $firstKey,
+                "id$concept2" => $secondKey
+            ], false);
+        }
+
     }
 
-}
-
-if ($success)
-{
     header("Location: index.php");
+} catch(Exception $e)
+{
+    require_once("ErrorView.php");
+    ErrorView::showError($e);
 }

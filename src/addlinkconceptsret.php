@@ -10,8 +10,11 @@ $destinationconcept = $_GET["destinationconcept"];
 
 
 $conceptDao = new ConceptDao($pdo);
-$success = $conceptDao->linkConcept($sourceconcept, $destinationconcept);
-if ($success)
-{
+try {
+    $conceptDao->linkConcept($sourceconcept, $destinationconcept);
     header("Location: index.php");
+
+} catch (Exception $e) {
+    require_once("ErrorView.php");
+    ErrorView::showError($e);
 }

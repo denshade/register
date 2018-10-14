@@ -22,8 +22,11 @@ if ($columntype == "enum")
 }
 
 $conceptDao = new ConceptDao($pdo);
-$success = $conceptDao->addTableColumn($concept, $columnname, $columntype);
-if ($success)
-{
+try {
+    $conceptDao->addTableColumn($concept, $columnname, $columntype);
     header("Location: addcolumn.php?concept=$concept");
+}catch (Exception $e)
+{
+    require_once("ErrorView.php");
+    ErrorView::showError($e);
 }

@@ -30,11 +30,17 @@ $userDao = new UserDao($pdo);
             </thead>
             <tbody>
             <?php
-            foreach ($userDao->getUsers() as $dataRow) {
-                echo "<tr><td>";
-                echo "$dataRow";
-                echo "</td></tr>";
+            try {
+                foreach ($userDao->getUsers() as $dataRow) {
+                    echo "<tr><td>";
+                    echo "$dataRow";
+                    echo "</td></tr>";
 
+                }
+            } catch (Exception $e)
+            {
+                require_once "ErrorView.php";
+                ErrorView::showError($e);
             }
             ?>
             </tbody>
