@@ -1,6 +1,7 @@
 <?php
 require_once "ConceptDao.php";
 require_once "../settings.php";
+require "connection.php";
 
 $concept = $_GET["concept"];
 header('Content-Type: application/octet-stream');
@@ -9,13 +10,6 @@ header('Expires: 0');
 header('Cache-Control: must-revalidate');
 header('Pragma: public');
 
-try {
-    $pdo = getConnection();
-    $conceptDao = new ConceptDao($pdo);
-} catch (Exception $exception)
-{
-
-}
 
 $attributes = $conceptDao->getAttributesNames($concept);
 echo implode(",", $attributes)."\n";

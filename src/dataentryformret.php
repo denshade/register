@@ -1,9 +1,7 @@
 <?php
 require_once "ConceptDao.php";
 require_once "../settings.php";
-
-
-$pdo = getConnection();
+require "connection.php";
 
 $concept = $_GET["concept"];
 

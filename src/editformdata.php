@@ -2,17 +2,13 @@
 require_once "ConceptDao.php";
 require_once "../settings.php";
 
-try {
-    $pdo = getConnection();
-    $conceptDao = new ConceptDao($pdo);
-    $concept = $_GET['concept'];
-    $id = $_GET['id'];
-    $conceptData = $conceptDao->getById($concept, $id);
-} catch (PDOException $exception) {
-    header("Location: login.php");
-    return;
-    //redirect to login.php
-}
+require "connection.php";
+
+$conceptDao = new ConceptDao($pdo);
+$concept = $_GET['concept'];
+$id = $_GET['id'];
+$conceptData = $conceptDao->getById($concept, $id);
+
 ?>
 <html>
 <head>

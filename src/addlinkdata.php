@@ -2,12 +2,8 @@
 require_once "ConceptDao.php";
 require_once "../settings.php";
 
-try {
-    $pdo = getConnection();
-} catch (PDOException $exception) {
-    http_redirect("login.php");
-    //redirect to login.php
-}
+require "connection.php";
+
 $conceptDao = new ConceptDao($pdo);
 $concepts = $_GET["concept"];
 $conceptArray = explode("2", substr($concepts, 1));

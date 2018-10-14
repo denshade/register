@@ -8,13 +8,8 @@ header('Expires: 0');
 header('Cache-Control: must-revalidate');
 header('Pragma: public');
 
-try {
-    $pdo = getConnection();
-    $conceptDao = new ConceptDao($pdo);
-} catch (Exception $exception)
-{
-
-}
+require "connection.php";
+$conceptDao = new ConceptDao($pdo);
 
 foreach($conceptDao->getConcepts() as $concept)
 {
