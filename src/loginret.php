@@ -3,8 +3,14 @@ require_once "../settings.php";
 
 $login = $_POST["login"];
 $password = $_POST["password"];
+session_start();
 $_SESSION["login"] = $login;
 $_SESSION["password"] = $password;
+
+function getConnection($username, $password)
+{
+    return new PDO(getDbString(), $username, $password);
+}
 
 if ($login == null || $password == null)
 {
@@ -19,7 +25,6 @@ try {
 {
     header("Location: login.php");
     return;
-    //redirect to login.php
 }
 
 header("Location: index.php");
