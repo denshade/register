@@ -10,7 +10,7 @@ header('Expires: 0');
 header('Cache-Control: must-revalidate');
 header('Pragma: public');
 
-
+$conceptDao = new ConceptDao($pdo);
 $attributes = $conceptDao->getAttributesNames($concept);
 echo implode(",", $attributes)."\n";
 $attributes = $conceptDao->getAttributesNames($concept);

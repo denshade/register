@@ -261,11 +261,11 @@ class ConceptDao
 
         }
         $success = $this->pdo->exec("UPDATE $concept SET ".implode(",", $setStrings)." WHERE id${concept} = $id");
-        if (!$success)
+        if ($success === FALSE)
         {
             var_dump($this->pdo->errorInfo());
         }
-        return $success;
+        return $success !== FALSE;
     }
 
     public function dropTableColumn($concept, $columnname)
