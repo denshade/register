@@ -3,6 +3,8 @@ require_once "ConceptDao.php";
 require_once "../settings.php";
 
 require "connection.php";
+$concept = $_GET["concept"];
+$conceptDao = new ConceptDao($pdo);
 
 ?>
 <html>
