@@ -30,7 +30,7 @@ require "connection.php";
             echo "<tr>
                     <td>$concept</td>
                     <td><a href='view_concept_list.php?concept=$concept'>Manipulate data</a></td>
-                    <td><a href='addcolumn.php?concept=$concept'>Add columns</a></td>
+                    <td><a href='manipulatecolumns.php?concept=$concept'>Manipulate schema</a></td>
                     <td><a href='dropconcept.php?concept=$concept'>Remove concept</a></td>
                     </tr>";
         }
@@ -62,7 +62,6 @@ require "connection.php";
                     <td><a href='combinedata.php?concept1=${fromConcept}&concept2=${toConcept}'>Combine data</a></td>
                     </tr>";
         }
-
         ?>
 
         </tbody>
