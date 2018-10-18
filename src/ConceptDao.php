@@ -272,12 +272,7 @@ class ConceptDao
     public function dropTableColumn($concept, $columnname)
     {
         $pdoStatement = $this->pdo->prepare('ALTER TABLE '.$concept.' DROP COLUMN '.$columnname);
-        $success = $pdoStatement->execute();
-        if (!$success)
-        {
-            var_dump($pdoStatement->errorInfo());
-        }
-        return $success;
+        $pdoStatement->execute();
     }
 
     public function updateColumn($concept, $oldcolumnname, $name, $type)
