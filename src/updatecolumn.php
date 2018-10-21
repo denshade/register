@@ -15,18 +15,13 @@ foreach ($attributes as $attribute) {
         $currentAttribute = $attribute;
     }
 }
-var_dump($currentAttribute->type);
-switch($currentAttribute->type)
-{
-    case "boolean": $booleanSelected = "selected"; break;
-    case "int": $intSelected = "selected"; break;
-    case "doubleD": $doubleSelected = "selected"; break;
-    case "date": $dateSelected = "selected"; break;
-    case "datetime": $datetimeSelected = "selected"; break;
-    case "varchar(255)": $varcharSelected = "selected"; break;
-    case "text": $varcharSelected = "selected"; break;
-    default: throw new Exception("Unknown type:" . $currentAttribute->name .".");
-}
+if ($currentAttribute->isBoolean()) $booleanSelected = "selected";
+if ($currentAttribute->isInt()) $intSelected = "selected";
+if ($currentAttribute->isDouble()) $doubleSelected = "selected";
+if ($currentAttribute->isVarchar()) $varcharSelected = "selected";
+if ($currentAttribute->isEnum()) $enumSelected = "selected";
+if ($currentAttribute->isText()) $textSelected = "selected";
+
 ?>
 <html>
 <head>
@@ -50,12 +45,12 @@ switch($currentAttribute->type)
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
                         <input type="text" onkeyup="removeSpaces('name');" class="form-control" name="name" id="name"
-                               placeholder="<?php echo $oldcolumnname; ?>">
+                               value="<?php echo $oldcolumnname; ?>">
                     </div>
                 </div>
             </div>
             <input type="hidden" name="concept" id="concept" value="<?php echo $concept; ?>">
-            <input type="hidden" name="concept" id="column" value="<?php echo $oldcolumnname; ?>">
+            <input type="hidden" name="column" id="column" value="<?php echo $oldcolumnname; ?>">
 
             <label for="name" class="cols-sm-2 control-label">Type of the new column</label>
             <div class="cols-sm-10">
@@ -79,7 +74,21 @@ switch($currentAttribute->type)
         <label>Options</label>
         <div class="cols-sm-10">
             <div class="input-group">
-                <textarea id="options" class="form-control" name="options"></textarea>
+                <?php
+                if ($currentAttribute->isEnum())
+                {
+                    $options = substr($currentAttribute->type, strlen("enum("));
+                    $options = substr($options, 0, strlen($options) - 1);
+                    $optionsArray = explode(",", $options);
+                    $cleanOptions = [];
+                    foreach($optionsArray as $option)
+                    {
+                        $cleanOptions []= substr($option, 1, strlen($option) - 2);
+                    }
+                    $optionsLines = implode("\n", $cleanOptions);
+                }
+                ?>
+                <textarea id="options" class="form-control" name="options"><?php echo $optionsLines;?></textarea>
             </div>
         </div>
     </div>
@@ -93,7 +102,8 @@ switch($currentAttribute->type)
     <div class="form-group">
                 <div class="cols-sm-10">
                     <div class="input-group">
-                        <input class="btn btn-success" type="Submit" value="Update column">
+                        <input class="btn btn-success" type="Submit" value="Update column"> &nbsp;
+                        <button class="btn btn-secondary" onclick="window.history.back();return false;">Cancel</button>
                     </div>
                 </div>
             </div>

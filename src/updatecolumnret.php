@@ -7,7 +7,29 @@ require "connection.php";
 
 $concept = $_GET["concept"];
 $oldcolumnname = $_GET["column"];
-$name = $_GET["name"];
+$newcolumnname = $_GET["name"];
+$columntype = $_GET["type"];
+
+if ($columntype == "enum")
+{
+    $options = $_GET["options"];
+    $optionArray = explode("\n", str_replace("\r", "", $options));
+    $quotedArray = [];
+    foreach ($optionArray as $option)
+    {
+        $quotedArray []= '\''.$option.'\'';
+    }
+    $enum = "enum(".implode(",", $quotedArray).")";
+    $columntype = $enum;
+}
+
 
 $conceptDao = new ConceptDao($pdo);
-$conceptDao->updateColumn($concept, $oldcolumnname, $name);
+try {
+    $conceptDao->updateColumn($concept, $oldcolumnname, $newcolumnname, $columntype);
+    header("Location: manipulatecolumns.php?concept=$concept");
+}catch (Exception $e)
+{
+    require_once("ErrorView.php");
+    ErrorView::showError($e);
+}
