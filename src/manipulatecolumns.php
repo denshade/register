@@ -40,8 +40,8 @@ $concept = $_GET["concept"];
             foreach ($attributes as $attribute) {
                 $button = "";
                 if ($counter++ > 0) {
-                    $button = "<form action='removecolumnret.php'><input type='submit' class='btn btn-warning' value='X'/><input type='hidden' name='concept' value='$concept'><input type='hidden' name='column' value='$attribute->name'></form>";
-                    $button .= "<form action='updatecolumn.php'><input type='submit' class='btn btn-warning' value='...'/><input type='hidden' name='concept' value='$concept'><input type='hidden' name='column' value='$attribute->name'></form>";
+                    $button = "<form style='display:inline' action='updatecolumn.php'><input type='submit' class='btn btn-warning' value='...'/><input type='hidden' name='concept' value='$concept'><input type='hidden' name='column' value='$attribute->name'></form>&nbsp;";
+                    $button .= "<form style='display:inline' action='removecolumnret.php'><input type='submit' class='btn btn-danger' value='X'/><input type='hidden' name='concept' value='$concept'><input type='hidden' name='column' value='$attribute->name'></form>";
                 }
                 echo "<tr>";
                 echo "<td>$attribute->name</td><td>$attribute->type</td><td>$button</td>";

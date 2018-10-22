@@ -20,7 +20,7 @@ require "connection.php";
     <div class="alert alert-info"><h1>The available concepts</h1></div>
     <table class="table">
         <thead><tr>
-        <th>Name</th><th></th><th></th><th></th><th></th>
+        <th>Name</th><th></th><th></th><th></th>
         </tr></thead>
         <tbody>
 <?php
@@ -29,8 +29,8 @@ require "connection.php";
         {
             echo "<tr>
                     <td>$concept</td>
-                    <td><a href='view_concept_list.php?concept=$concept'>Manipulate data</a></td>
-                    <td><a href='manipulatecolumns.php?concept=$concept'>Manipulate schema</a></td>
+                    <td><a href='view_concept_list.php?concept=$concept'>Edit data</a></td>
+                    <td><a href='manipulatecolumns.php?concept=$concept'>Edit schema</a></td>
                     <td><a href='dropconcept.php?concept=$concept'>Remove concept</a></td>
                     </tr>";
         }

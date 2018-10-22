@@ -43,9 +43,9 @@ $concept = @$_GET["concept"];
                 <?php
                 if (strlen($concept) > 0) {
 
-                    $attributes = $conceptDao->getAttributesNames($concept);
+                    $attributes = $conceptDao->getAttributes($concept);
                     foreach ($attributes as $attribute) {
-                        echo "<th>$attribute</th>";
+                        echo "<th>$attribute->name</th>";
                     }
                     echo '<th style="width:  8.33%"><!--delete button--></th>';
                 }
@@ -58,9 +58,20 @@ $concept = @$_GET["concept"];
 
                 foreach ($conceptDao->getDataForConcept($concept) as $dataRow) {
                     echo "<tr>";
-                    $id = $dataRow[$attributes[0]];
+                    $id = $dataRow[$attributes[0]->name];
                     foreach ($attributes as $attribute) {
-                        echo "<td>$dataRow[$attribute]</td>";
+                        $attributeName = $attribute->name;
+                        if ($attribute->isBoolean())
+                        {
+                            $checked = "";
+                            if ($dataRow[$attributeName] == 1)
+                            {
+                                $checked = "checked";
+                            }
+                            echo "<td><input class='form-control' disabled type='checkbox' $checked/></td>";
+                        } else {
+                            echo "<td>$dataRow[$attributeName]</td>";
+                        }
                     }
                     echo "<td>
                     <form style='display:inline;' action='editformdata.php'>
