@@ -15,12 +15,23 @@ foreach ($attributes as $attribute) {
         $currentAttribute = $attribute;
     }
 }
+$booleanSelected = "";
+$intSelected = "";
+$doubleSelected = "";
+$varcharSelected = "";
+$enumSelected = "";
+$textSelected = "";
+$dateSelected = "";
+$datetimeSelected = "";
+$optionsLines = "";
+
 if ($currentAttribute->isBoolean()) $booleanSelected = "selected";
 if ($currentAttribute->isInt()) $intSelected = "selected";
 if ($currentAttribute->isDouble()) $doubleSelected = "selected";
 if ($currentAttribute->isVarchar()) $varcharSelected = "selected";
 if ($currentAttribute->isEnum()) $enumSelected = "selected";
 if ($currentAttribute->isText()) $textSelected = "selected";
+
 
 ?>
 <html>
