@@ -1,6 +1,6 @@
 <?php
 require_once "../settings.php";
-require_once "ConceptDao.php";
+require_once "daos/ConceptDao.php";
 
 require "connection.php";
 
@@ -57,9 +57,9 @@ require "connection.php";
 
             echo "<tr>
                     <td>$fromConcept => $toConcept</td>
-                    <td><a href='removelinkret.php?concept=_${fromConcept}2${toConcept}'>Remove link</a></td>
                     <td><a href='addlinkdata.php?concept=_${fromConcept}2${toConcept}'>Add link data</a></td>
                     <td><a href='combinedata.php?concept1=${fromConcept}&concept2=${toConcept}'>Combine data</a></td>
+                    <td><a href='removelinkret.php?concept=_${fromConcept}2${toConcept}'>Remove link</a></td>
                     </tr>";
         }
         ?>

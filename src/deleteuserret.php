@@ -1,5 +1,5 @@
 <?php
-require_once "UserDao.php";
+require_once "daos/UserDao.php";
 require_once "../settings.php";
 
 require "connection.php";

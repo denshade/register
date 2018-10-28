@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Lieven
- * Date: 14-10-2018
- * Time: 18:26
- */
 
 class ErrorView
 {

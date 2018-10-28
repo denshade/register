@@ -68,7 +68,6 @@ class UserDao
             $pdoStatement->execute();
         }
         return $success;
-
     }
 
     public function deleteUser($username)

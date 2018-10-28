@@ -1,7 +1,7 @@
 <?php
 require "../settings.php";
 require "connection.php";
-require_once "UserDao.php";
+require_once "daos/UserDao.php";
 
 $username = $_POST["new_username"];
 $password = $_POST["new_password"];

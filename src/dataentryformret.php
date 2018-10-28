@@ -1,5 +1,5 @@
 <?php
-require_once "ConceptDao.php";
+require_once "daos/ConceptDao.php";
 require_once "../settings.php";
 require "connection.php";
 
