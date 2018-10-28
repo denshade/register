@@ -74,7 +74,13 @@ require "connection.php";
                             <input class="form-control" type="checkbox" name="update">
                         </div>
                     </div>
-
+                    <div class="row">
+                        <div class="col-2">
+                            <label>Grant permissions</label></div>
+                        <div class="col">
+                            <input class="form-control" type="checkbox" name="grant">
+                        </div>
+                    </div>
                     <input class="btn btn-primary" type="submit" value="Create user"/>
                     <button class="btn btn-secondary" onclick="window.location.href = 'index.php';return false;">
                         Cancel

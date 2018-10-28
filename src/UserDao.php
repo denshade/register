@@ -20,7 +20,7 @@ class UserDao
     public function getUsers()
     {
         $usernames = [];
-        $pdoStatement = $this->pdo->prepare('SELECT User FROM mysql.user');
+        $pdoStatement = $this->pdo->prepare("SELECT User FROM mysql.db where Db = '".getDatabaseName()."'");
         $pdoStatement->execute();
         $users = $pdoStatement->fetchAll();
         foreach ($users as $key => $username) {
@@ -31,7 +31,7 @@ class UserDao
     }
 
     //GRANT ALL PRIVILEGES ON database.* TO 'user'@'localhost'
-    public function createUser($username, $password, $grantCreate, $grantDrop, $grantDelete, $grantInsert, $grantUpdate)
+    public function createUser($username, $password, $grantCreate, $grantDrop, $grantDelete, $grantInsert, $grantUpdate, $grantGrant)
     {
         $privileges = "SELECT";
         if ($grantCreate){
@@ -52,11 +52,20 @@ class UserDao
         if ($grantUpdate){
             $privileges .= ", UPDATE";
         }
+        $withGrant = "";
+        if ($grantGrant) {
+            $withGrant .= " WITH GRANT OPTION";
+        }
 
-        $pdoStatement = $this->pdo->prepare("GRANT $privileges ON ".getDatabaseName().".* TO '$username'@'".getDatabaseHost()."' IDENTIFIED BY '$password'");
+        $pdoStatement = $this->pdo->prepare("GRANT $privileges ON ".getDatabaseName().".* TO '$username'@'".getDatabaseHost()."' IDENTIFIED BY '$password' $withGrant");
         $success = $pdoStatement->execute();
-        if (!$success) {
-            var_dump($pdoStatement->errorInfo());
+        if ($grantGrant)
+        {
+            $pdoStatement = $this->pdo->prepare("GRANT SELECT ON mysql.db TO '$username'@'".getDatabaseHost()."'");
+            $pdoStatement->execute();
+
+            $pdoStatement = $this->pdo->prepare("GRANT GRANT OPTION, CREATE USER ON *.* TO '$username'@'".getDatabaseHost()."'");
+            $pdoStatement->execute();
         }
         return $success;
 
@@ -64,6 +73,7 @@ class UserDao
 
     public function deleteUser($username)
     {
-        //DROP USER 'user'@'localhost'
+        $pdoStatement = $this->pdo->prepare("DROP USER '$username'@'".getDatabaseHost()."'");
+        $pdoStatement->execute();
     }
 }

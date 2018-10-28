@@ -25,16 +25,21 @@ $userDao = new UserDao($pdo);
         <table class="display nowrap dataTable dtr-inline collapsed" id="usernames">
             <thead>
             <tr>
-                <th>Username</th>
+                <th>Username</th><th><!-- Buttons --></th>
             </tr>
             </thead>
             <tbody>
             <?php
             try {
                 foreach ($userDao->getUsers() as $dataRow) {
-                    echo "<tr><td>";
+                    echo "<tr>";
+                    echo "<td>";
                     echo "$dataRow";
-                    echo "</td></tr>";
+                    echo "</td>";
+                    echo "<td>";
+                    echo "<form style='display:inline' action='deleteuserret.php'><input type='submit' class='btn btn-danger' value='X'/><input type='hidden' name='user' value='$dataRow'></form>";
+                    echo "</td>";
+                    echo "</tr>";
 
                 }
             } catch (Exception $e)

@@ -11,6 +11,7 @@ $drop   = @$_POST["drop"];
 $delete = @$_POST["delete"];
 $insert = @$_POST["insert"];
 $update = @$_POST["update"];
+$grant  = @$_POST["grant"];
 
 //alter
 //grant
@@ -18,10 +19,10 @@ $update = @$_POST["update"];
 
 $conceptDao = new UserDao($pdo);
 try {
-    $conceptDao->createUser($username, $password, $create, $drop, $delete, $insert, $update);
+    $conceptDao->createUser($username, $password, $create, $drop, $delete, $insert, $update, $grant);
     header("Location: users.php");
 } catch (Exception $e)
 {
-    $conceptDao->dropTable($concept);
-    header("Location: index.php");
+    require_once("ErrorView.php");
+    ErrorView::showError($e);
 }
