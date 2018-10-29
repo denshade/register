@@ -124,13 +124,14 @@ class ConceptDao
                 $value = (int)$value;
             } else if ($attribute->isEnum()) {
                 $value = "'$value'";
-            }else if ($attribute->isVarchar() || $attribute->isText()) {
+            }else if ($attribute->isVarchar() || $attribute->isText() || $attribute->isDate() || $attribute->isDateTime()) {
                 $value = "'$value'";
             }
             else if ($attribute->isDouble()) {
                 $value = (double)$value;
-            }else {
-                throw new Exception("Unknown attribute type");
+            }
+            else {
+                throw new Exception("Unknown attribute type ".  $attribute->type);
             }
             $values []= $value;
         }
@@ -251,12 +252,12 @@ class ConceptDao
                 $value = (int)$value;
             } else if ($attribute->isEnum()) {
                 $value = "'$value'";
-            }else if ($attribute->isVarchar() || $attribute->isText()) {
+            }else if ($attribute->isVarchar() || $attribute->isText() || $attribute->isDate() || $attribute->isDateTime()) {
                 $value = "'$value'";
             }else if ($attribute->isDouble()) {
                 $value = (double)$value;
             } else {
-                throw new Exception("Unknown attribute type");
+                throw new Exception("Unknown attribute type " . $attribute->type);
             }
             $setStrings []= $attribute->name . "=" . $value;
 

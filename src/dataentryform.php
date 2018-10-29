@@ -55,6 +55,13 @@ $conceptDao = new ConceptDao($pdo);
                         else if ($attribute->isDouble())
                         {
                             echo '<input class="form-control" type="text"  name="' . $attribute->name . '">';
+                        } else if ($attribute->isDate())
+                        {
+                            echo '<input class="form-control" type="date"  name="' . $attribute->name . '">';
+                        }
+                        else if ($attribute->isDateTime())
+                        {
+                            echo '<input class="form-control" type="datetime-local"  name="' . $attribute->name . '">';
                         }
                         else {
                             var_dump($attribute->type);

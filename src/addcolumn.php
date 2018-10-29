@@ -29,7 +29,7 @@ $concept = $_GET["concept"];
                 <div class="cols-sm-10">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                        <input type="text" onkeyup="removeSpaces('name');" class="form-control" name="name" id="name"
+                        <input type="text" required onkeyup="removeSpaces('name');" class="form-control" name="name" id="name"
                                placeholder="Enter the name of column">
                     </div>
                 </div>

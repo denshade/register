@@ -66,6 +66,14 @@ $conceptData = $conceptDao->getById($concept, $id);
                         }else if ($attribute->isDouble())
                         {
                             echo '<input class="form-control" type="number" step="any" name="' . $attribute->name . '" value="'.$value.'">';
+                        }else if ($attribute->isDate())
+                        {
+                            echo '<input class="form-control" type="date"  name="' . $attribute->name . '" value="'.$value.'">';
+                        }
+                        else if ($attribute->isDateTime())
+                        {
+                            $value = str_replace(" ", "T", $value);
+                            echo '<input class="form-control" type="datetime-local"  name="' . $attribute->name . '" value="'.$value.'">';
                         }
                         else {
                             throw new Exception("Unknown attribute type" . $attribute->type);

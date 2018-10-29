@@ -34,6 +34,17 @@ class Attribute
         return strpos($this->type, "double") !== FALSE;
     }
 
+    public function isDate()
+    {
+        return $this->type == "date";
+    }
+
+    public function isDateTime()
+    {
+        return $this->type == "datetime";
+    }
+
+
     /**
      *
      */

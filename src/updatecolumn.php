@@ -31,6 +31,8 @@ if ($currentAttribute->isDouble()) $doubleSelected = "selected";
 if ($currentAttribute->isVarchar()) $varcharSelected = "selected";
 if ($currentAttribute->isEnum()) $enumSelected = "selected";
 if ($currentAttribute->isText()) $textSelected = "selected";
+if ($currentAttribute->isDate()) $dateSelected = "selected";
+if ($currentAttribute->isDateTime()) $datetimeSelected = "selected";
 
 
 ?>
