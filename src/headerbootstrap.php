@@ -6,3 +6,4 @@
 <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 <link rel="stylesheet" href="../css/main.css"/>
 <script src="js/libs.js"></script>
+<link rel="shortcut icon" type="image/png" href="favicon.png">
