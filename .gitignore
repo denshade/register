@@ -42,3 +42,5 @@ $RECYCLE.BIN/
 *.lnk
 
 settings.php
+
+audit.csv

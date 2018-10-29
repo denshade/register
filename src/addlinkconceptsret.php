@@ -1,5 +1,6 @@
 <?php
 require_once "daos/ConceptDao.php";
+require_once "daos/AuditTrail.php";
 require_once "../settings.php";
 
 
@@ -12,6 +13,7 @@ $destinationconcept = $_GET["destinationconcept"];
 $conceptDao = new ConceptDao($pdo);
 try {
     $conceptDao->linkConcept($sourceconcept, $destinationconcept);
+    AuditTrail::audit($login, "Linked concepts $sourceconcept with $destinationconcept");
     header("Location: index.php");
 
 } catch (Exception $e) {

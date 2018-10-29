@@ -1,5 +1,6 @@
 <?php
 require_once "daos/ConceptDao.php";
+require_once "daos/AuditTrail.php";
 require_once "../settings.php";
 
 require "connection.php";
@@ -11,6 +12,7 @@ $id = $_GET["id"];
 $conceptDao = new ConceptDao($pdo);
 try {
     $conceptDao->deleteData($concept, $id);
+    AuditTrail::audit($login, "Deleted data for $concept");
     header("Location: view_concept_list.php?concept=$concept");
 } catch(Exception $e)
 {

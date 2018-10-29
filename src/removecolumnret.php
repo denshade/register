@@ -11,6 +11,7 @@ $columnname = $_GET["column"];
 $conceptDao = new ConceptDao($pdo);
 try {
     $conceptDao->dropTableColumn($concept, $columnname);
+    AuditTrail::audit($login, "Removed a table column $columnname on concept $concept");
     header("Location: addcolumn.php?concept=$concept");
 } catch (Exception $e)
 {

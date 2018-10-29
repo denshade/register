@@ -29,6 +29,7 @@ try {
         }
 
     }
+    AuditTrail::audit($login, "Linked data from $concept1 with $concept2."); //TODO audit all changed data.
 
     header("Location: index.php");
 } catch(Exception $e)
