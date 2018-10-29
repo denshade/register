@@ -23,6 +23,7 @@ try {
     $pdo = getConnection($login, $password);
 } catch (PDOException $exception)
 {
+    error_log($exception->getMessage());
     header("Location: login.php");
     return;
 }

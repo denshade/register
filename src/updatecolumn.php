@@ -57,7 +57,7 @@ if ($currentAttribute->isDateTime()) $datetimeSelected = "selected";
                 <div class="cols-sm-10">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                        <input type="text" onkeyup="removeSpaces('name');" class="form-control" name="name" id="name"
+                        <input type="text" onkeyup="removeSpaces('name');" required pattern="[a-zA-Z][a-zA-Z0-9_]*" class="form-control" name="name" id="name"
                                value="<?php echo $oldcolumnname; ?>">
                     </div>
                 </div>
