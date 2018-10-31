@@ -14,6 +14,7 @@ $moveafterselect = $_GET["moveafterselect"];
 $type = $_GET["type"];
 try {
     $conceptDao->moveColumnAfter($concept, $columnname, $type, $moveafterselect);
+    AuditTrail::audit(getUser(), "Moved $columnname after $moveafterselect for concept $concept");
     header("Location: manipulatecolumns.php?concept=$concept");
 
 } catch (Exception $e)

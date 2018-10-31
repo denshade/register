@@ -17,6 +17,10 @@
             <li class="nav-item">
                 <a class="nav-link" href="users.php">Users</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="audittrail.php">Audit trail</a>
+            </li>
+
         </ul>
         <ul class="navbar-nav">
             <li class="nav-item">
