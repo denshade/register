@@ -1,6 +1,7 @@
 <?php
 require_once "daos/ConceptDao.php";
 require_once "../settings.php";
+require_once "daos/AuditTrail.php";
 
 
 require "connection.php";
