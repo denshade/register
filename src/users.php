@@ -37,7 +37,7 @@ $userDao = new UserDao($pdo);
                     echo "$dataRow";
                     echo "</td>";
                     echo "<td>";
-                    echo "<form style='display:inline' action='deleteuserret.php'><input type='submit' class='btn btn-danger' value='X'/><input type='hidden' name='user' value='$dataRow'></form>";
+                    echo "<form style='display:inline' action='deleteuserret.php'><input type='submit' class='btn btn-danger btn-sm' value='X'/><input type='hidden' name='user' value='$dataRow'></form>";
                     echo "</td>";
                     echo "</tr>";
 

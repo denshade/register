@@ -77,12 +77,12 @@ $concept = @$_GET["concept"];
                     <form style='display:inline;' action='editformdata.php'>
                         <input type='hidden' name='concept' value='$concept'/>
                         <input type='hidden' name='id' value='$id'/>
-                        <input type='submit' class='btn btn-success' value='...'/>
+                        <input type='submit' class='btn btn-success btn-sm' value='...'/>
                     </form>
                     <form style='display:inline;' action='deletedataret.php'>
                         <input type='hidden' name='concept' value='$concept'/>
                         <input type='hidden' name='id' value='$id'/>
-                        <input type='submit' class='btn btn-danger' value='X'/>
+                        <input type='submit' class='btn btn-danger btn-sm' value='X'/>
                     </form>
                     </td>";
                     echo "</tr>";

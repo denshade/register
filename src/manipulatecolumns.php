@@ -40,8 +40,9 @@ $concept = $_GET["concept"];
             foreach ($attributes as $attribute) {
                 $button = "";
                 if ($counter++ > 0) {
-                    $button = "<form style='display:inline' action='updatecolumn.php'><input type='submit' class='btn btn-warning' value='...'/><input type='hidden' name='concept' value='$concept'><input type='hidden' name='column' value='$attribute->name'></form>&nbsp;";
-                    $button .= "<form style='display:inline' action='removecolumnret.php'><input type='submit' class='btn btn-danger' value='X'/><input type='hidden' name='concept' value='$concept'><input type='hidden' name='column' value='$attribute->name'></form>";
+                    $button = "<form style='display:inline' action='updatecolumn.php'><input type='submit' class='btn btn-warning btn-sm' value='...'/><input type='hidden' name='concept' value='$concept'><input type='hidden' name='column' value='$attribute->name'></form>&nbsp;";
+                    $button .= "<form style='display:inline' action='movecolumn.php'><input type='submit' class='btn btn-warning btn-sm' value='&#8597;'/><input type='hidden' name='concept' value='$concept'><input type='hidden' name='column' value='$attribute->name'></form>&nbsp;";
+                    $button .= "<form style='display:inline' action='removecolumnret.php'><input type='submit' class='btn btn-danger btn-sm' value='X'/><input type='hidden' name='concept' value='$concept'><input type='hidden' name='column' value='$attribute->name'></form>";
                 }
                 echo "<tr>";
                 echo "<td>$attribute->name</td><td>$attribute->type</td><td>$button</td>";

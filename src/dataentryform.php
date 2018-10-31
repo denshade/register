@@ -4,8 +4,8 @@ require_once "../settings.php";
 
 require "connection.php";
 $concept = $_GET["concept"];
-$conceptDao = new ConceptDao($pdo);
 $pdo = getConnectionFromSession();
+$conceptDao = new ConceptDao($pdo);
 
 ?>
 <html>
