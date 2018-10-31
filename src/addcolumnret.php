@@ -7,6 +7,8 @@ require_once "../settings.php";
 
 require "connection.php";
 
+$pdo = getConnectionFromSession();
+
 $concept = $_GET["concept"];
 $columnname = $_GET["name"];
 $columntype = $_GET["type"];

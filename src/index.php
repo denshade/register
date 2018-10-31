@@ -2,8 +2,9 @@
 require_once "../settings.php";
 require_once "daos/ConceptDao.php";
 
-require "connection.php";
+require_once "connection.php";
 
+$pdo = getConnectionFromSession();
 ?>
 <html>
 <head>

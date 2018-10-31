@@ -2,7 +2,8 @@
 require_once "daos/ConceptDao.php";
 require_once "../settings.php";
 
-require "connection.php";
+require_once "connection.php";
+$pdo = getConnectionFromSession();
 
 $conceptDao = new ConceptDao($pdo);
 $concept = $_GET["concept"];

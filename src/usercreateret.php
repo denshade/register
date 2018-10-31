@@ -1,6 +1,7 @@
 <?php
 require "../settings.php";
 require "connection.php";
+$pdo = getConnectionFromSession();
 require_once "daos/UserDao.php";
 
 $username = $_POST["new_username"];

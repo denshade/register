@@ -3,7 +3,7 @@ require_once "daos/UserDao.php";
 require_once "../settings.php";
 
 require "connection.php";
-
+$pdo = getConnectionFromSession();
 $userDao = new UserDao($pdo);
 ?>
 <html>

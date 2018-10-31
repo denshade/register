@@ -7,7 +7,7 @@ require "connection.php";
 
 $user = $_GET["user"];
 
-
+$pdo = getConnectionFromSession();
 $userDao = new UserDao($pdo);
 try {
     $userDao->deleteUser($user);

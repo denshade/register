@@ -5,6 +5,7 @@ require_once "../settings.php";
 
 
 require "connection.php";
+$pdo = getConnectionFromSession();
 
 $concept = $_GET["concept"];
 

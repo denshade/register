@@ -9,6 +9,7 @@ header('Cache-Control: must-revalidate');
 header('Pragma: public');
 
 require "connection.php";
+$pdo = getConnectionFromSession();
 $conceptDao = new ConceptDao($pdo);
 
 foreach($conceptDao->getConcepts() as $concept)

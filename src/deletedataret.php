@@ -8,7 +8,7 @@ require "connection.php";
 $concept = $_GET["concept"];
 $id = $_GET["id"];
 
-
+$pdo = getConnectionFromSession();
 $conceptDao = new ConceptDao($pdo);
 try {
     $conceptDao->deleteData($concept, $id);

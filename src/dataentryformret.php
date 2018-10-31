@@ -6,7 +6,7 @@ require "connection.php";
 
 $concept = $_GET["concept"];
 
-
+$pdo = getConnectionFromSession();
 $conceptDao = new ConceptDao($pdo);
 try {
     $conceptDao->addDataForConcept($concept, $_GET);

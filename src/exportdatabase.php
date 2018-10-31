@@ -2,6 +2,7 @@
 require_once "daos/ConceptDao.php";
 require_once "../settings.php";
 require "connection.php";
+$pdo = getConnectionFromSession();
 
 $concept = $_GET["concept"];
 header('Content-Type: application/octet-stream');
