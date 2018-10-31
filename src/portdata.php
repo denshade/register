@@ -40,8 +40,8 @@ $concept = @$_GET["concept"]
     </form>
 
     <form action="uploadCsvret.php" method="POST" class="form-horizontal" enctype="multipart/form-data">
-        <input type="hidden" name="concept" value="<?php echo $concept;?>"/>
-        <label>CSV file for <?php echo $concept; ?></label><input name="inputfile" class="form-control" type="file"/><BR/>
+        <input type="hidden"  name="concept" value="<?php echo $concept;?>"/>
+        <label>CSV file for <?php echo $concept; ?></label><input name="inputfile" required class="form-control" type="file"/><BR/>
         <input type="submit" class="form-control" value="Load this data"/>
     </form>
 </div>
