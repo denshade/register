@@ -30,7 +30,7 @@ $concept = $_GET["concept"];
             <tr>
                 <th>Name</th>
                 <th>Type</th>
-                <th><!--Remove button--></th>
+                <th><!--buttons--></th>
             </tr>
             </thead>
             <tbody>

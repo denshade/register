@@ -278,10 +278,15 @@ class ConceptDao
 
     public function updateColumn($concept, $oldcolumnname, $name, $type)
     {
-        error_log('ALTER TABLE '.$concept.' CHANGE '.$oldcolumnname . ' '.$name . ' '.$type);
         $pdoStatement = $this->pdo->prepare('ALTER TABLE '.$concept.' CHANGE '.$oldcolumnname . ' '.$name . ' '.$type);
         $pdoStatement->execute();
 
+    }
+
+    public function moveColumnAfter($concept, $columnname, $type, $moveafterselect)
+    {
+        $pdoStatement = $this->pdo->prepare('ALTER TABLE '.$concept.' MODIFY '.$columnname . ' '.$type . ' AFTER '.$moveafterselect);
+        $pdoStatement->execute();
     }
 
 
