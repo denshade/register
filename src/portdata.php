@@ -19,10 +19,10 @@ $concept = @$_GET["concept"]
     include "navbar.php";
     ?>
     <br/>
-    <h1><div class="alert alert-info">Export database</div></h1>
+    <h1><div class="alert alert-primary">Export database</div></h1>
     <button class="btn btn-success" onclick='window.location.href="exportschema.php";'>Export database schema (no data)</button>
     <hr/>
-    <h1><div class="alert alert-info">Import database</div></h1>
+    <h1><div class="alert alert-primary">Import database</div></h1>
 
     <form action="portdata.php" class="form-horizontal">
         Data for <select class="form-control" name="concept" onchange="this.form.submit();">

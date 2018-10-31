@@ -21,11 +21,10 @@ $concept = @$_GET["concept"];
     ?>
     <br/>
     <div class="container-fluid">
-        <h1>
             <form action="view_concept_list.php">
                 Data for <select name="concept" onchange="this.form.submit();">
                     <?php
-                    echo "<option value=''></option>";
+                    echo "<option value=\"\" disabled selected>Select your concept</option>";
                         foreach ($conceptDao->getConcepts() as $conceptOption) {
                             $selected = "";
                             if ($conceptOption == $concept) {
@@ -36,7 +35,6 @@ $concept = @$_GET["concept"];
                     ?>
                 </select>
             </form>
-        </h1>
         <table class="display nowrap dataTable dtr-inline collapsed" id="concept">
             <thead>
             <tr>
@@ -100,7 +98,7 @@ $concept = @$_GET["concept"];
         echo "<input type=\"button\" $disabled class=\"btn btn-success\" onclick=\"location.href='dataentryform.php?concept=$concept';\" value=\"Add data\" />";
         echo " <input type=\"button\" $disabled  class=\"btn btn-success\" onclick=\"location.href='exportdatabase.php?concept=$concept';\" value=\"Download as CSV\" />";
         ?>
-        <script>$('#concept').DataTable({paging: false});</script>
+        <script>$('#concept').DataTable({paging: true, "lengthMenu": [[100,500, -1], [100, 500,"All"]]});</script>
 
 
     </div>

@@ -4,7 +4,13 @@ require_once "daos/ConceptDao.php";
 
 require_once "connection.php";
 
+try {
+
 $pdo = getConnectionFromSession();
+} catch (Exception $e)
+{
+    return;// a failure will return to login.php.
+}
 ?>
 <html>
 <head>
@@ -18,7 +24,7 @@ $pdo = getConnectionFromSession();
     <?php
     include "navbar.php";
     ?>
-    <div class="alert alert-info"><h1>The available concepts</h1></div>
+    <div class="alert alert-primary"><h1>The available concepts</h1></div>
     <table class="table">
         <thead><tr>
         <th>Name</th><th></th><th></th><th></th>
@@ -43,7 +49,7 @@ $pdo = getConnectionFromSession();
     <button class="btn btn-success" onclick='window.location.href="addconcept.php";'>Add concept</button>
     <hr/>
     <div>
-        <div class="alert alert-info"><h1>The available links</h1></div>
+        <div class="alert alert-primary"><h1>The available links</h1></div>
     <table class="table">
         <thead><tr>
         <th>Name</th><th></th><th></th><th></th>
