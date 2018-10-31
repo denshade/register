@@ -10,7 +10,7 @@ $pdo = getConnectionFromSession();
 $conceptDao = new ConceptDao($pdo);
 try {
     $conceptDao->addDataForConcept($concept, $_GET);
-    AuditTrail::audit($login, "Added data for $concept");
+    AuditTrail::audit(getUser(), "Added data for $concept");
 
     header("Location: view_concept_list.php?concept=$concept");
 } catch (Exception $e)

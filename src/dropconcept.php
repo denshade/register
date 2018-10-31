@@ -10,7 +10,7 @@ $pdo = getConnectionFromSession();
 $conceptDao = new ConceptDao($pdo);
 try {
     $conceptDao->dropTable($concept);
-    AuditTrail::audit($login, "Removed a concept $concept");
+    AuditTrail::audit(getUser(), "Removed a concept $concept");
     header("Location: index.php");
 } catch (Exception $e)
 {

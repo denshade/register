@@ -28,7 +28,7 @@ if ($columntype == "enum")
 $conceptDao = new ConceptDao($pdo);
 try {
     $conceptDao->addTableColumn($concept, $columnname, $columntype);
-    AuditTrail::audit($login, "Added column to $concept by name $columnname type: $columntype");
+    AuditTrail::audit(getUser(), "Added column to $concept by name $columnname type: $columntype");
     header("Location: addcolumn.php?concept=$concept");
 }catch (Exception $e)
 {

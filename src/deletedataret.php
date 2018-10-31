@@ -12,7 +12,7 @@ $pdo = getConnectionFromSession();
 $conceptDao = new ConceptDao($pdo);
 try {
     $conceptDao->deleteData($concept, $id);
-    AuditTrail::audit($login, "Deleted data for $concept");
+    AuditTrail::audit(getUser(), "Deleted data for $concept");
     header("Location: view_concept_list.php?concept=$concept");
 } catch(Exception $e)
 {

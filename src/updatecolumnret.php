@@ -28,7 +28,7 @@ if ($columntype == "enum")
 $conceptDao = new ConceptDao($pdo);
 try {
     $conceptDao->updateColumn($concept, $oldcolumnname, $newcolumnname, $columntype);
-    AuditTrail::audit($login, "Updated a column $oldcolumnname to $newcolumnname with type $columntype on concept $concept");
+    AuditTrail::audit(getUser(), "Updated a column $oldcolumnname to $newcolumnname with type $columntype on concept $concept");
     header("Location: manipulatecolumns.php?concept=$concept");
 }catch (Exception $e)
 {

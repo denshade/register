@@ -14,7 +14,7 @@ $destinationconcept = $_GET["destinationconcept"];
 $conceptDao = new ConceptDao($pdo);
 try {
     $conceptDao->linkConcept($sourceconcept, $destinationconcept);
-    AuditTrail::audit($login, "Linked concepts $sourceconcept with $destinationconcept");
+    AuditTrail::audit(getUser(), "Linked concepts $sourceconcept with $destinationconcept");
     header("Location: index.php");
 
 } catch (Exception $e) {

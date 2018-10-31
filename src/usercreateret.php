@@ -21,7 +21,7 @@ $grant  = @$_POST["grant"];
 $conceptDao = new UserDao($pdo);
 try {
     $conceptDao->createUser($username, $password, $create, $drop, $delete, $insert, $update, $grant);
-    AuditTrail::audit($login, "Created a user $username");
+    AuditTrail::audit(getUser(), "Created a user $username");
     header("Location: users.php");
 } catch (Exception $e)
 {

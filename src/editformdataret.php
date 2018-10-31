@@ -11,7 +11,7 @@ $id = $_GET["id"];
 $conceptDao = new ConceptDao($pdo);
 try {
     $conceptDao->updateDataForConcept($concept, $id, $_GET);
-    AuditTrail::audit($login, "Update data for $id on concept $concept");
+    AuditTrail::audit(getUser(), "Update data for $id on concept $concept");
 
     header("Location: view_concept_list.php?concept=$concept");
 } catch (Exception $e)

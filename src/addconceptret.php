@@ -13,7 +13,7 @@ $concept = $_GET["concept"];
 $conceptDao = new ConceptDao($pdo);
 try {
     $conceptDao->createConcept($concept);
-    AuditTrail::audit($login, "Added a new concept $concept");
+    AuditTrail::audit(getUser(), "Added a new concept $concept");
 
     header("Location: index.php");
 } catch(Exception $e)

@@ -11,7 +11,7 @@ $pdo = getConnectionFromSession();
 $userDao = new UserDao($pdo);
 try {
     $userDao->deleteUser($user);
-    AuditTrail::audit($login, "Deleted user for $user");
+    AuditTrail::audit(getUser(), "Deleted user for $user");
 
     header("Location: users.php");
 } catch(Exception $e)
