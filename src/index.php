@@ -74,6 +74,7 @@ $pdo = getConnectionFromSession();
         </tbody>
     </table>
     <button class="btn btn-success" onclick='window.location.href="addlinkconcepts.php";'>Link two concepts</button>
-</div>
+    </div>
+    <br/>
     </body>
     </html>

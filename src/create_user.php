@@ -5,6 +5,17 @@ require_once "../settings.php";
 require "connection.php";
 $pdo = getConnectionFromSession();
 
+function createCheckbox($label, $name)
+{
+    echo '<div class="row">
+                        <div class="col-2">
+                            <label>'.$label.'</label></div>
+                        <div class="col">
+                            <input class="form-control" type="checkbox" name="'.$name.'">
+                        </div>
+                    </div>';
+}
+
 ?>
 <html>
 <head>
@@ -40,48 +51,12 @@ $pdo = getConnectionFromSession();
                             <input class="form-control" type="password" name="new_password">
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-2">
-                            <label>Create new concepts</label></div>
-                        <div class="col">
-                            <input class="form-control" type="checkbox" name="create">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-2">
-                            <label>Drop concepts</label></div>
-                        <div class="col">
-                            <input class="form-control" type="checkbox" name="drop">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-2">
-                            <label>Delete data</label></div>
-                        <div class="col">
-                            <input class="form-control" type="checkbox" name="delete">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-2">
-                            <label>Insert data</label></div>
-                        <div class="col">
-                            <input class="form-control" type="checkbox" name="insert">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-2">
-                            <label>Update data</label></div>
-                        <div class="col">
-                            <input class="form-control" type="checkbox" name="update">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-2">
-                            <label>Grant permissions</label></div>
-                        <div class="col">
-                            <input class="form-control" type="checkbox" name="grant">
-                        </div>
-                    </div>
+                    <?php createCheckbox("Create new concepts", "create");?>
+                    <?php createCheckbox("Drop concepts", "drop");?>
+                    <?php createCheckbox("Delete data", "delete");?>
+                    <?php createCheckbox("Insert data", "insert");?>
+                    <?php createCheckbox("Update data", "update");?>
+                    <?php createCheckbox("Grant permissions", "grant");?>
                     <input class="btn btn-primary" type="submit" value="Create user"/>
                     <button class="btn btn-secondary" onclick="window.location.href = 'index.php';return false;">
                         Cancel

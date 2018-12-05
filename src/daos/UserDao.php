@@ -57,6 +57,7 @@ class UserDao
             $withGrant .= " WITH GRANT OPTION";
         }
 
+        error_log("GRANT $privileges ON ".getDatabaseName().".* TO '$username'@'".getDatabaseHost()."' IDENTIFIED BY '$password' $withGrant");
         $pdoStatement = $this->pdo->prepare("GRANT $privileges ON ".getDatabaseName().".* TO '$username'@'".getDatabaseHost()."' IDENTIFIED BY '$password' $withGrant");
         $success = $pdoStatement->execute();
         if ($grantGrant)

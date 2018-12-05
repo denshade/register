@@ -22,7 +22,7 @@ $concept = @$_GET["concept"];
     <br/>
     <div class="container-fluid">
             <form action="view_concept_list.php">
-                Data for <select name="concept" onchange="this.form.submit();">
+                <label>Data for <select name="concept" onchange="this.form.submit();"></label>
                     <?php
                     echo "<option value=\"\" disabled selected>Select your concept</option>";
                         foreach ($conceptDao->getConcepts() as $conceptOption) {
@@ -35,6 +35,7 @@ $concept = @$_GET["concept"];
                     ?>
                 </select>
             </form>
+        <br/><br/>
         <table class="display nowrap dataTable dtr-inline collapsed" id="concept">
             <thead>
             <tr>
