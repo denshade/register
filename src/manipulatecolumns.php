@@ -52,7 +52,7 @@ $concept = $_GET["concept"];
             </tbody>
         </table>
     <?php
-    echo '<button class="btn btn-primary" onclick="window.location.href = \'addcolumn.php?concept='.$concept.'\';return false;">Add concept</button>';?>
+    echo '<button class="btn btn-primary" onclick="window.location.href = \'addcolumn.php?concept='.$concept.'\';return false;">Add column</button>';?>
 
     </div>
 
